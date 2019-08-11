@@ -51,7 +51,7 @@ namespace PandaScore.NET
         {
             var uri = new Uri(string.Format(@"{0}/{1}/?filter[id]={2}&token={3}", Domain, "teams", id, AccessToken));
             return await GetSingleFromArray<Team>(uri);
-        } 
+        }
         #endregion
 
         #region Items
@@ -75,6 +75,62 @@ namespace PandaScore.NET
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "matches", id, AccessToken));
             return await GetSingleFromArray<Match>(uri);
+        }
+        #endregion
+
+        #region Series
+        public async Task<Series> GetSeries(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "series", id, AccessToken));
+            return await GetSingleFromArray<Series>(uri);
+        }
+        #endregion
+
+        #region Games
+        public async Task<Game> GetGame(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "games", id, AccessToken));
+            return await GetSingleFromArray<Game>(uri);
+        }
+        #endregion
+
+        #region Tournaments
+        public async Task<Tournament> GetTournament(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "tournaments", id, AccessToken));
+            return await GetSingleFromArray<Tournament>(uri);
+        }
+        #endregion
+
+        #region Leagues
+        public async Task<League> GetLeague(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "leagues", id, AccessToken));
+            return await GetSingleFromArray<League>(uri);
+        }
+        #endregion
+
+        #region Spells
+        public async Task<Spell> GetSpellAsync(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "spells", id, AccessToken));
+            return await GetSingle<Spell>(uri);
+        }
+        #endregion
+
+        #region Runes
+        public async Task<Rune> GetRuneAsync(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "runes", id, AccessToken));
+            return await GetSingle<Rune>(uri);
+        }
+        #endregion
+
+        #region Masteries
+        public async Task<Mastery> GetMasteryAsync(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "masteries", id, AccessToken));
+            return await GetSingle<Mastery>(uri);
         }
         #endregion
 
@@ -156,7 +212,7 @@ namespace PandaScore.NET
             }
 
             return null;
-        } 
+        }
         #endregion
     }
 }

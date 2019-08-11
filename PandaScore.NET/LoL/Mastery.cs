@@ -5,16 +5,16 @@ using System.Text;
 
 namespace PandaScore.NET.LoL
 {
-    public class Masteries
+    public class Mastery
     {
         [JsonProperty("id")]
         public int Id { get; private set; }
         [JsonProperty("name")]
-        public int Name { get; private set; }
+        public string Name { get; private set; }
 
         public override bool Equals(object obj)
         {
-            var masteries = obj as Masteries;
+            var masteries = obj as Mastery;
             return masteries != null &&
                    Id == masteries.Id;
         }

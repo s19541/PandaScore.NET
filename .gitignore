@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /PandaScore.NET.Test
+/PandaScore.NET/LoL/QueryOptions

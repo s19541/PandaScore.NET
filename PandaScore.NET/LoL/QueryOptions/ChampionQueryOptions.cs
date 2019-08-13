@@ -1,5 +1,4 @@
-﻿using PandaScore.NET.LoL.QueryOptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -40,15 +39,31 @@ namespace PandaScore.NET.LoL
         #endregion
 
         List<QueryOption> properties = new List<QueryOption>();
+        List<string> sortStringOrder = new List<string>();
 
         public ChampionQueryOptions()
         {
             PropertyInfo[] props = typeof(ChampionQueryOptions).GetProperties();
             foreach (var prop in props)
             {
-                properties.Add(prop.GetValue(this) as QueryOption);
+                QueryOption option = prop.GetValue(this) as QueryOption;
+                properties.Add(option);
+                option.SortChanged += SortChangedHandler;
             }
         }
+
+        private void SortChangedHandler(QueryOption option, bool added)
+        {
+            if (added && sortStringOrder.Contains(option.ToSortString()) == false)
+            {
+                sortStringOrder.Add(option.ToSortString());
+            }
+            else if (!added && sortStringOrder.Contains(option.ToSortString()))
+            {
+                sortStringOrder.Remove(option.ToSortString());
+            }
+        }
+
 
         /// <summary>
         /// Gets the query string portion of a request.
@@ -76,11 +91,9 @@ namespace PandaScore.NET.LoL
                 {
                     rangeString = string.Join("&", group.Select(x => x.ToRangeString()));
                 }
-                if ((group.Key & QueryOptionType.Sort) == QueryOptionType.Sort)
-                {
-                    sortString = "sort=" + string.Join(",", group.Select(x => x.ToSortString()));
-                }
             }
+            //has to be done separately to keep sort ordering
+            sortString = "sort=" + string.Join(",", sortStringOrder);
             return string.Join("&", filterString, searchString, rangeString, sortString);
         }
     }

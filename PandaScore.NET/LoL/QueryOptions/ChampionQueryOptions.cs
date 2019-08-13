@@ -13,53 +13,53 @@ namespace PandaScore.NET.LoL
 
         #region Properties
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> Armor { get; } = new QueryOption<float>("armor", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> Armor { get; } = new QueryOption<float>("armor", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> ArmorPerLevel { get; } = new QueryOption<float>("armorperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> ArmorPerLevel { get; } = new QueryOption<float>("armorperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> AttackDamage { get; } = new QueryOption<float>("attackdamage", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> AttackDamage { get; } = new QueryOption<float>("attackdamage", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> AttackDamagePerLevel { get; } = new QueryOption<float>("attackdamageperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> AttackDamagePerLevel { get; } = new QueryOption<float>("attackdamageperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> AttackRange { get; } = new QueryOption<float>("attackrange", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> AttackRange { get; } = new QueryOption<float>("attackrange", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> AttackSpeedOffset { get; } = new QueryOption<float>("attackspeedoffset", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> AttackSpeedOffset { get; } = new QueryOption<float>("attackspeedoffset", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> AttackSpeedPerLevel { get; } = new QueryOption<float>("attackspeedperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> AttackSpeedPerLevel { get; } = new QueryOption<float>("attackspeedperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>A URL pointing to the champion's image. Can be used to filter, sort, range, or as a search term. </summary>
         public QueryOption<string> BigImageUrl { get; } = new QueryOption<string>("big_image_url", QueryOptionType.All);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> Crit { get; } = new QueryOption<float>("crit", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> Crit { get; } = new QueryOption<float>("crit", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> CritPerLevel { get; } = new QueryOption<float>("critperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> CritPerLevel { get; } = new QueryOption<float>("critperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> Hp { get; } = new QueryOption<float>("hp", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> Hp { get; } = new QueryOption<float>("hp", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> HpPerLevel { get; } = new QueryOption<float>("hpperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> HpPerLevel { get; } = new QueryOption<float>("hpperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> HpRegen { get; } = new QueryOption<float>("hpregen", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> HpRegen { get; } = new QueryOption<float>("hpregen", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> HpRegenPerLevel { get; } = new QueryOption<float>("hpregenperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> HpRegenPerLevel { get; } = new QueryOption<float>("hpregenperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<int> Id { get; } = new QueryOption<int>("id", QueryOptionType.FilterSearchSort);
+        public QueryOption<int> Id { get; } = new QueryOption<int>("id", QueryOptionType.FilterRangehSort);
         /// <summary>A URL pointing the champion's image. Can be used to filter, sort, range, or as a seach term. </summary>
         public QueryOption<string> ImageUrl { get; } = new QueryOption<string>("image_url", QueryOptionType.All);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> MoveSpeed { get; } = new QueryOption<float>("movespeed", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> MoveSpeed { get; } = new QueryOption<float>("movespeed", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> ManaPoints { get; } = new QueryOption<float>("mp", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> ManaPoints { get; } = new QueryOption<float>("mp", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> ManaPointsPerLevel { get; } = new QueryOption<float>("mpperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> ManaPointsPerLevel { get; } = new QueryOption<float>("mpperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> ManaRegen { get; } = new QueryOption<float>("mpregen", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> ManaRegen { get; } = new QueryOption<float>("mpregen", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> ManaRegenPerLevel { get; } = new QueryOption<float>("mpregenperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> ManaRegenPerLevel { get; } = new QueryOption<float>("mpregenperlevel", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, range, or as a search term. </summary>
         public QueryOption<string> Name { get; } = new QueryOption<string>("name", QueryOptionType.All);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> MagicResist { get; } = new QueryOption<float>("spellblock", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> MagicResist { get; } = new QueryOption<float>("spellblock", QueryOptionType.FilterRangehSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
-        public QueryOption<float> MagicResistPerLevel { get; } = new QueryOption<float>("spellblockperlevel", QueryOptionType.FilterSearchSort);
+        public QueryOption<float> MagicResistPerLevel { get; } = new QueryOption<float>("spellblockperlevel", QueryOptionType.FilterRangehSort);
         #endregion
 
         List<QueryOption> properties = new List<QueryOption>();

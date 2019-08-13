@@ -78,7 +78,7 @@ namespace PandaScore.NET
         /// <summary>
         /// Gets the first champion that matches the query options. Even if there is more than one matching result, only the first will be returned!
         /// </summary>
-        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Champion> GetSingleChampionAsync(ChampionQueryOptions options)
@@ -97,6 +97,22 @@ namespace PandaScore.NET
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "champions", options.GetQueryString(), AccessToken));
             return await GetMany<Champion>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Champion[]> GetChampionsLazy(ChampionQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "champions", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Champion>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 
@@ -233,6 +249,54 @@ namespace PandaScore.NET
             {
                 return JArray.Parse(jsonString).ToObject<T[]>();
             }
+        }
+
+        IEnumerator<T[]> GetManyLazy<T>(Uri uri)
+        {
+            var responseTask = Task.Run(() => client.GetAsync(uri));
+            responseTask.Wait();
+            var response = responseTask.Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"PandaScore request returned status code {response.StatusCode}");
+            }
+
+            int numberOfItems = int.Parse(
+                response.Headers.GetValues("X-Total").First());
+
+            int pageSize = int.Parse(
+                response.Headers.GetValues("X-Per-Page").First());
+
+            var jsonStringTask = Task.Run(() => response.Content.ReadAsStringAsync());
+            jsonStringTask.Wait();
+            string jsonString = jsonStringTask.Result;
+
+            if (numberOfItems > pageSize)
+            {
+                string linkHeader = response.Headers.GetValues("Link").First();
+
+                yield return JArray.Parse(jsonString).ToObject<T[]>();
+
+                for (int i = pageSize; i < numberOfItems; i += pageSize)
+                {
+                    responseTask = Task.Run(() => client.GetAsync(GetNextPage(linkHeader)));
+                    responseTask.Wait();
+                    response = responseTask.Result;
+                    linkHeader = response.Headers.GetValues("Link").First();
+                    jsonStringTask = Task.Run(() => response.Content.ReadAsStringAsync());
+                    jsonStringTask.Wait();
+                    jsonString = jsonStringTask.Result;
+                    yield return JArray.Parse(jsonString).ToObject<T[]>();
+                }
+
+            }
+
+            else
+            {
+                yield return JArray.Parse(jsonString).ToObject<T[]>();
+            }
+
         }
 
         Uri GetNextPage(string header)

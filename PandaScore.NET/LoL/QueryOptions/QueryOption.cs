@@ -13,8 +13,8 @@ namespace PandaScore.NET.LoL
         Search = 2,
         Range = 4,
         Sort = 8,
-        FilterSearchSort = Filter | Search | Sort,
         FilterAndRange = Filter | Range,
+        FilterRangehSort = Filter | Search | Range,
         All = Filter | Range | Sort,
     }
 

@@ -11,6 +11,8 @@ namespace PandaScore.NET.LoL
         #region Properties
         [JsonProperty("acronym")]
         public string Acronym { get; private set; }
+        [JsonProperty("current_videogame")]
+        public VideoGame CurrentVideoGame { get; private set; }
         [JsonProperty("id")]
         public int Id { get; private set; }
         [JsonProperty("image_url")]

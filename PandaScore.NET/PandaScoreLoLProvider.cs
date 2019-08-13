@@ -81,10 +81,56 @@ namespace PandaScore.NET
         #endregion
 
         #region Teams
+        /// <summary>
+        /// Gets a team based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a team.</param>
+        /// <returns>A Team object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Team> GetTeamAsync(int id)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}/?filter[id]={2}&token={3}", Domain, "teams", id, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "teams", id, AccessToken));
+            return await GetSingle<Team>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first team that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Team object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Team> GetSingleTeamAsync(TeamQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "teams", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Team>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of teams.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all teams that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Team[]> GetTeamsAsync(TeamQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "teams", options.GetQueryString(), AccessToken));
+            return await GetMany<Team>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Team[]> GetTeamsLazy(TeamQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "teams", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Team>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 

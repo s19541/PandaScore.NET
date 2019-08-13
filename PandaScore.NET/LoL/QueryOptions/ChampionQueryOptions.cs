@@ -13,30 +13,30 @@ namespace PandaScore.NET.LoL
     {
 
         #region Properties
-        public QueryOption<float> Armor { get; private set; } = new QueryOption<float>("armor", QueryOptionType.FilterAndRange);
-        public QueryOption<float> ArmorPerLevel { get; private set; } = new QueryOption<float>("armorperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<float> AttackDamage { get; private set; } = new QueryOption<float>("attackdamage", QueryOptionType.FilterAndRange);
-        public QueryOption<float> AttackDamagePerLevel { get; private set; } = new QueryOption<float>("attackdamageperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<float> AttackRange { get; private set; } = new QueryOption<float>("attackrange", QueryOptionType.FilterAndRange);
-        public QueryOption<float> AttackSpeedOffset { get; private set; } = new QueryOption<float>("attackspeedoffset", QueryOptionType.FilterAndRange);
-        public QueryOption<float> AttackSpeedPerLevel { get; private set; } = new QueryOption<float>("attackspeedperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<string> BigImageUrl { get; private set; } = new QueryOption<string>("big_image_url", QueryOptionType.FilterAndRange);
-        public QueryOption<float> Crit { get; private set; } = new QueryOption<float>("crit", QueryOptionType.FilterAndRange);
-        public QueryOption<float> CritPerLevel { get; private set; } = new QueryOption<float>("critperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<float> Hp { get; private set; } = new QueryOption<float>("hp", QueryOptionType.FilterAndRange);
-        public QueryOption<float> HpPerLevel { get; private set; } = new QueryOption<float>("hpperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<float> HpRegen { get; private set; } = new QueryOption<float>("hpregen", QueryOptionType.FilterAndRange);
-        public QueryOption<float> HpRegenPerLevel { get; private set; } = new QueryOption<float>("hpregenperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<int> Id { get; private set; } = new QueryOption<int>("id", QueryOptionType.FilterAndRange);
-        public QueryOption<string> ImageUrl { get; private set; } = new QueryOption<string>("image_url", QueryOptionType.FilterAndRange);
-        public QueryOption<float> MoveSpeed { get; private set; } = new QueryOption<float>("movespeed", QueryOptionType.FilterAndRange);
-        public QueryOption<float> ManaPoints { get; private set; } = new QueryOption<float>("mp", QueryOptionType.FilterAndRange);
-        public QueryOption<float> ManaPointsPerLevel { get; private set; } = new QueryOption<float>("mpperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<float> ManaRegen { get; private set; } = new QueryOption<float>("mpregen", QueryOptionType.FilterAndRange);
-        public QueryOption<float> ManaRegenPerLevel { get; private set; } = new QueryOption<float>("mpregenperlevel", QueryOptionType.FilterAndRange);
-        public QueryOption<string> Name { get; private set; } = new QueryOption<string>("name", QueryOptionType.FilterAndRange);
-        public QueryOption<float> MagicResist { get; private set; } = new QueryOption<float>("spellblock", QueryOptionType.FilterAndRange);
-        public QueryOption<float> MagicResistPerLevel { get; private set; } = new QueryOption<float>("spellblockperlevel", QueryOptionType.FilterAndRange);
+        public QueryOption<float> Armor { get; } = new QueryOption<float>("armor", QueryOptionType.All);
+        public QueryOption<float> ArmorPerLevel { get; } = new QueryOption<float>("armorperlevel", QueryOptionType.All);
+        public QueryOption<float> AttackDamage { get; } = new QueryOption<float>("attackdamage", QueryOptionType.All);
+        public QueryOption<float> AttackDamagePerLevel { get; } = new QueryOption<float>("attackdamageperlevel", QueryOptionType.All);
+        public QueryOption<float> AttackRange { get; } = new QueryOption<float>("attackrange", QueryOptionType.All);
+        public QueryOption<float> AttackSpeedOffset { get; } = new QueryOption<float>("attackspeedoffset", QueryOptionType.All);
+        public QueryOption<float> AttackSpeedPerLevel { get; } = new QueryOption<float>("attackspeedperlevel", QueryOptionType.All);
+        public QueryOption<string> BigImageUrl { get; } = new QueryOption<string>("big_image_url", QueryOptionType.All);
+        public QueryOption<float> Crit { get; } = new QueryOption<float>("crit", QueryOptionType.All);
+        public QueryOption<float> CritPerLevel { get; } = new QueryOption<float>("critperlevel", QueryOptionType.All);
+        public QueryOption<float> Hp { get; } = new QueryOption<float>("hp", QueryOptionType.All);
+        public QueryOption<float> HpPerLevel { get; } = new QueryOption<float>("hpperlevel", QueryOptionType.All);
+        public QueryOption<float> HpRegen { get; } = new QueryOption<float>("hpregen", QueryOptionType.All);
+        public QueryOption<float> HpRegenPerLevel { get; } = new QueryOption<float>("hpregenperlevel", QueryOptionType.All);
+        public QueryOption<int> Id { get; } = new QueryOption<int>("id", QueryOptionType.All);
+        public QueryOption<string> ImageUrl { get; } = new QueryOption<string>("image_url", QueryOptionType.All);
+        public QueryOption<float> MoveSpeed { get; } = new QueryOption<float>("movespeed", QueryOptionType.All);
+        public QueryOption<float> ManaPoints { get; } = new QueryOption<float>("mp", QueryOptionType.All);
+        public QueryOption<float> ManaPointsPerLevel { get; } = new QueryOption<float>("mpperlevel", QueryOptionType.All);
+        public QueryOption<float> ManaRegen { get; } = new QueryOption<float>("mpregen", QueryOptionType.All);
+        public QueryOption<float> ManaRegenPerLevel { get; } = new QueryOption<float>("mpregenperlevel", QueryOptionType.All);
+        public QueryOption<string> Name { get; } = new QueryOption<string>("name", QueryOptionType.All);
+        public QueryOption<float> MagicResist { get; } = new QueryOption<float>("spellblock", QueryOptionType.All);
+        public QueryOption<float> MagicResistPerLevel { get; } = new QueryOption<float>("spellblockperlevel", QueryOptionType.All);
         #endregion
 
         List<QueryOption> properties = new List<QueryOption>();
@@ -50,11 +50,38 @@ namespace PandaScore.NET.LoL
             }
         }
 
-        public string GetQueryString()
+        /// <summary>
+        /// Gets the query string portion of a request.
+        /// </summary>
+        /// <returns>Query string, formatted as required by the PandaScore API.</returns>
+        internal string GetQueryString()
         {
-            var applicable = properties.Where(x => x.HasFilterValue).Select(x => x).ToArray();
-            var strings = applicable.Select(x => x.ToString()).ToArray();
-            return string.Join("&", strings);
+            var groups = properties.GroupBy(x => x.CurrentType);
+            string filterString = null, searchString = null, rangeString = null, sortString = null;
+            foreach (var group in groups)
+            {
+                if (group.Key == QueryOptionType.None)
+                {
+                    continue;
+                }
+                if ((group.Key & QueryOptionType.Filter) == QueryOptionType.Filter)
+                {
+                    filterString = string.Join("&", group.Select(x => x.ToFilterString()));
+                }
+                if ((group.Key & QueryOptionType.Search) == QueryOptionType.Search)
+                {
+                    searchString = string.Join("&", group.Select(x => x.ToSearchString()));
+                }
+                if ((group.Key & QueryOptionType.Range) == QueryOptionType.Range)
+                {
+                    rangeString = string.Join("&", group.Select(x => x.ToRangeString()));
+                }
+                if ((group.Key & QueryOptionType.Sort) == QueryOptionType.Sort)
+                {
+                    sortString = "sort=" + string.Join(",", group.Select(x => x.ToSortString()));
+                }
+            }
+            return string.Join("&", filterString, searchString, rangeString, sortString);
         }
     }
 }

@@ -148,27 +148,39 @@ namespace PandaScore.NET.LoL
             CurrentType |= QueryOptionType.Search;
         }
 
+        /// <summary>
+        /// Removes any filters applied to this property.
+        /// </summary>
         public void UnsetFilter()
         {
             CurrentType &= ~QueryOptionType.Filter;
         }
 
+        /// <summary>
+        /// Removes any search terms applied to this property.
+        /// </summary>
         public void UnsetSearch()
         {
             CurrentType &= ~QueryOptionType.Search;
         }
 
+        /// <summary>
+        /// Removes any range values applied to this property.
+        /// </summary>
         public void UnsetRange()
         {
             CurrentType &= ~QueryOptionType.Range;
         }
 
+        /// <summary>
+        /// Removes any sorting options applied to this property.
+        /// </summary>
         public void UnsetSort()
         {
             CurrentType &= ~QueryOptionType.Sort;
             OnSortChanged(this, false);
         }
-
+        
         internal override string ToFilterString()
         {
             if (filterValue is IFormattable f)

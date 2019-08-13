@@ -63,10 +63,40 @@ namespace PandaScore.NET
         #endregion
 
         #region Champions
+        /// <summary>
+        /// Gets a <c>Champion</c> based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a champion.</param>
+        /// <returns>A <c>Champion</c> object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Champion> GetChampionAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "champions", id, AccessToken));
             return await GetSingle<Champion>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first champion that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Champion> GetSingleChampionAsync(ChampionQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "champions", options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Champion>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of champions.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all champions that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Champion[]> GetChampionsAsync(ChampionQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "champions", options.GetQueryString(), AccessToken));
+            return await GetMany<Champion>(uri);
         }
         #endregion
 
@@ -150,7 +180,7 @@ namespace PandaScore.NET
             return JObject.Parse(jsonString).ToObject<T>();
         }
 
-        async Task<T> GetSingleFromArray<T>(Uri uri)
+        async Task<T> GetSingleFromArray<T>(Uri uri) where T : class
         {
             var response = await client.GetAsync(uri);
 
@@ -160,7 +190,9 @@ namespace PandaScore.NET
             }
 
             var jsonString = await response.Content.ReadAsStringAsync();
-            return JArray.Parse(jsonString)[0].ToObject<T>();
+            var array = JArray.Parse(jsonString);
+            if (array.Count > 0) return array[0].ToObject<T>();
+            else return null;
         }
 
         async Task<T[]> GetMany<T>(Uri uri)

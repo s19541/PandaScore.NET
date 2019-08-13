@@ -16,6 +16,7 @@ namespace PandaScore.NET.LoL
         FilterAndRange = Filter | Range,
         FilterRangeSort = Filter | Sort | Range,
         All = Filter | Range | Sort | Search,
+        FilterSearchSort = Filter | Search | Sort,
     }
 
     public abstract class QueryOption

@@ -62,9 +62,5 @@ namespace PandaScore.NET.LoL
         /// <summary>Can be used to filter, sort, and range. </summary>
         public QueryOption<float> MagicResistPerLevel { get; } = new QueryOption<float>("spellblockperlevel", QueryOptionType.FilterRangeSort);
         #endregion
-
-        public ChampionQueryOptions() : base()
-        {
-        }
     }
 }

@@ -13,7 +13,7 @@ namespace PandaScore.NET.LoL.QueryOptions
 
         protected QueryConfiguration()
         {
-            PropertyInfo[] props = typeof(ChampionQueryOptions).GetProperties();
+            PropertyInfo[] props = this.GetType().GetProperties();
             foreach (var prop in props)
             {
                 QueryOption option = prop.GetValue(this) as QueryOption;

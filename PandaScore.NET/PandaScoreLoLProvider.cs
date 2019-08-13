@@ -55,10 +55,56 @@ namespace PandaScore.NET
         #endregion
 
         #region Items
+        /// <summary>
+        /// Gets an Item based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to an item.</param>
+        /// <returns>An Item object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Item> GetItemAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "items", id, AccessToken));
             return await GetSingle<Item>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first Item that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Item object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Item> GetSingleItemAsync(ItemQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "items", options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Item>(uri);
+        }
+        
+        /// <summary>
+        /// Queries for a matching array of items.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all items that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Item[]> GetItemsAsync(ItemQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "items", options.GetQueryString(), AccessToken));
+            return await GetMany<Item>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Item[]> GetItemsLazy(ItemQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "items", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Item>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 

@@ -51,6 +51,8 @@ namespace PandaScore.NET.LoL
         public float? PercentLifesteal { get; private set; }
         [JsonProperty("percent_movement_speed_mod")]
         public float? PercentMovementSpeed { get; private set; }
+        [JsonProperty("videogame_versions")]
+        public string[] VideogameVersions { get; private set; }
         #endregion
 
         #region Constructors

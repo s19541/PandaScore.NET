@@ -13,6 +13,8 @@ namespace PandaScore.NET.LoL
         #region Properties
         [JsonProperty("current_team")]
         public Team CurrentTeam { get; private set; }
+        [JsonProperty("current_videogame")]
+        public VideoGame CurrentVideoGame { get; private set; }
         [JsonProperty("first_name")]
         public string FirstName { get; private set; }
         [JsonProperty("hometown")]

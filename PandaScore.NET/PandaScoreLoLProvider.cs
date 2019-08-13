@@ -27,22 +27,56 @@ namespace PandaScore.NET
         #region PublicInterface
 
         #region Players
+        /// <summary>
+        /// Gets a player based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to an player.</param>
+        /// <returns>A Player object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Player> GetPlayerAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "players", id, AccessToken));
             return await GetSingleFromArray<Player>(uri);
         }
 
-        public async Task<Player> GetPlayerAsync(string name)
+        /// <summary>
+        /// Gets the first player that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Player object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Player> GetSinglePlayerAsync(PlayerQueryOptions options)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}?filter[name]={2}&token={3}", Domain, "players", name, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "players", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Player>(uri);
         }
 
-        public async Task<Player[]> GetPlayersAsync(PlayerRole role)
+        /// <summary>
+        /// Queries for a matching array of players.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all players that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Player[]> GetPlayersAsync(PlayerQueryOptions options)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}?page[size]=100&filter[role]={2}&token={3}", Domain, "players", role, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "players", options.GetQueryString(), AccessToken));
             return await GetMany<Player>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Player[]> GetPlayersLazy(PlayerQueryOptions options, int pageSize = 50) //haha
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "players", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Player>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 

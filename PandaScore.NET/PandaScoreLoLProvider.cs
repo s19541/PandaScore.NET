@@ -202,27 +202,165 @@ namespace PandaScore.NET
         }
         #endregion
 
-        #region Spells
-        public async Task<Spell> GetSpellAsync(int id)
-        {
-            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "spells", id, AccessToken));
-            return await GetSingle<Spell>(uri);
-        }
-        #endregion
-
         #region Runes
+        /// <summary>
+        /// Gets a rune based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a rune.</param>
+        /// <returns>A Rune object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Rune> GetRuneAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "runes", id, AccessToken));
             return await GetSingle<Rune>(uri);
         }
+
+        /// <summary>
+        /// Gets the first rune that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Rune object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Rune> GetSingleRuneAsync(RuneQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "runes", options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Rune>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of runes.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all runes that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Rune[]> GetRunesAsync(RuneQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "runes", options.GetQueryString(), AccessToken));
+            return await GetMany<Rune>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Rune[]> GetRunesLazy(RuneQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "runes", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Rune>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
+        }
+        #endregion
+
+        #region Spells
+        /// <summary>
+        /// Gets a spell based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a spell.</param>
+        /// <returns>A Spell object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Spell> GetSpellAsync(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "spells", id, AccessToken));
+            return await GetSingle<Spell>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first spell that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Spell object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Spell> GetSingleSpellAsync(SpellQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "spells", options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Spell>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of spells.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all spells that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Spell[]> GetSpellsAsync(SpellQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "spells", options.GetQueryString(), AccessToken));
+            return await GetMany<Spell>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Spell[]> GetSpellLazy(SpellQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "spells", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Spell>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
+        }
         #endregion
 
         #region Masteries
+        /// <summary>
+        /// Gets a Mastery based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a mastery.</param>
+        /// <returns>A Mastery object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Mastery> GetMasteryAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "masteries", id, AccessToken));
             return await GetSingle<Mastery>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first mastery that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Mastery object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Mastery> GetSingleMasteryAsync(MasteryQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "masteries", options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Mastery>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of masteries.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all masteries that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Mastery[]> GetMasteriesAsync(MasteryQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "masteries", options?.GetQueryString(), AccessToken));
+            return await GetMany<Mastery>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Mastery[]> GetItemsLazy(MasteryQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "masteries", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Mastery>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 

@@ -243,23 +243,123 @@ namespace PandaScore.NET
         #endregion
 
         #region Matches
-        public async Task<Match> GetMatch(int id)
+        /// <summary>
+        /// Gets a match based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a match.</param>
+        /// <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+        /// <returns>A match object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Match> GetMatchAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "matches", id, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "matches", GetTournamentDomainString(status), id, AccessToken));
             return await GetSingleFromArray<Match>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first match that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+        /// <returns>A single Match object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Match> GetSingleMatchAsync(MatchQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "match", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Match>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of game matches.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="category">Completion status of the matches to be queried. Defaults to All.</param>
+        /// <returns>An array containing all series that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Match[]> GetMatchesAsync(MatchQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "matches", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            return await GetMany<Match>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the matches to be queried. Defaults to All.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Match[]> GetMatchesLazy(MatchQueryOptions options, int pageSize = 50, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "matches", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Match>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 
         #region Series
-        public async Task<Series> GetSeries(int id)
+        /// <summary>
+        /// Gets a series based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a series.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <returns>A Series object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Series> GetSeriesAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "series", id, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "series", GetTournamentDomainString(status), id, AccessToken));
             return await GetSingleFromArray<Series>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first series that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <returns>A single Series object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Series> GetSingleSeriesAsync(SeriesQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Series>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of series.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <returns>An array containing all series that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Series[]> GetSeriesAsync(SeriesQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            return await GetMany<Series>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Series[]> GetSeriesLazy(SeriesQueryOptions options, int pageSize = 50, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Series>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 
         #region Games
-        public async Task<Game> GetGame(int id)
+        public async Task<Game> GetGameAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "games", id, AccessToken));
             return await GetSingleFromArray<Game>(uri);
@@ -271,10 +371,10 @@ namespace PandaScore.NET
         /// Gets a tournament based on its numeric ID.
         /// </summary>
         /// <param name="id">A numeric ID belonging to a tournament.</param>
-        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <param name="category">Completion status of the tournament to be queried. Defaults to All.</param>
         /// <returns>A Tournament object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
-        public async Task<Tournament> GetTournamentAsync(int id, TournamentStatus status = TournamentStatus.All)
+        public async Task<Tournament> GetTournamentAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), id, AccessToken));
             return await GetSingleFromArray<Tournament>(uri);
@@ -287,7 +387,7 @@ namespace PandaScore.NET
         /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
         /// <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
-        public async Task<Tournament> GetSingleTournamentAsync(TournamentQueryOptions options, TournamentStatus status = TournamentStatus.All)
+        public async Task<Tournament> GetSingleTournamentAsync(TournamentQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Tournament>(uri);
@@ -300,7 +400,7 @@ namespace PandaScore.NET
         /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
         /// <returns>An array containing all tournaments that match the search options.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
-        public async Task<Tournament[]> GetTournamentsAsync(TournamentQueryOptions options, TournamentStatus status = TournamentStatus.All)
+        public async Task<Tournament[]> GetTournamentsAsync(TournamentQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
             return await GetMany<Tournament>(uri);
@@ -313,7 +413,7 @@ namespace PandaScore.NET
         /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
         /// <param name="pageSize">How many results should be returned per iteration.</param>
         /// <returns>Arrays of query results.</returns>
-        public IEnumerable<Tournament[]> GetTournamentsLazy(TournamentQueryOptions options, int pageSize = 50, TournamentStatus status = TournamentStatus.All)
+        public IEnumerable<Tournament[]> GetTournamentsLazy(TournamentQueryOptions options, int pageSize = 50, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
             var iterator = GetManyLazy<Tournament>(uri);
@@ -325,10 +425,56 @@ namespace PandaScore.NET
         #endregion
 
         #region Leagues
-        public async Task<League> GetLeague(int id)
+        /// <summary>
+        /// Gets a league based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a league.</param>
+        /// <returns>A League object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<League> GetLeagueAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "leagues", id, AccessToken));
             return await GetSingleFromArray<League>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first league that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single League object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<League> GetSingleLeagueAsync(LeagueQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "leagues", options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<League>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of leagues.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all leagues that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<League[]> GetLeaguesAsync(LeagueQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "leagues", options.GetQueryString(), AccessToken));
+            return await GetMany<League>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<League[]> GetLeaguesLazy(LeagueQueryOptions options, int pageSize = 50)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&page[size]={3}&token={4}", Domain, "leagues", options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<League>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 
@@ -624,17 +770,17 @@ namespace PandaScore.NET
             return null;
         }
 
-        string GetTournamentDomainString(TournamentStatus category)
+        string GetTournamentDomainString(GameCollectionStatus category)
         {
             switch (category)
             {
-                case TournamentStatus.All:
+                case GameCollectionStatus.All:
                     return "";
-                case TournamentStatus.Past:
+                case GameCollectionStatus.Past:
                     return @"\past";
-                case TournamentStatus.Running:
+                case GameCollectionStatus.Running:
                     return @"\running";
-                case TournamentStatus.Upcoming:
+                case GameCollectionStatus.Upcoming:
                     return @"\upcoming";
             }
             return "";
@@ -642,7 +788,7 @@ namespace PandaScore.NET
         #endregion
     }
 
-    public enum TournamentStatus
+    public enum GameCollectionStatus
     {
         All,
         Past,

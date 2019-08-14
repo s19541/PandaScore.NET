@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScore.NET.LoL
 {
+    /// <summary>
+    /// Represents a specific match, such as a regular season Bo1, or a playoff match.
+    /// </summary>
     public class Match
     {
         #region Properties
@@ -48,8 +51,12 @@ namespace PandaScore.NET.LoL
         public Tournament Tournament { get; private set; }
         [JsonProperty("tournament_id")]
         public int TournamentId { get; private set; }
+        [JsonProperty("videogame")]
+        public VideoGame VideoGame { get; private set; }
+        [JsonProperty("videogame_version")]
+        public string VideoGameVersion { get; private set; }
         [JsonProperty("winner")]
-        public Team Winner { get; private set; }
+        public Winner Winner { get; private set; }
         [JsonProperty("winner_id")]
         public int WinnerId { get; private set; }
 

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScore.NET.LoL
 {
+    /// <summary>
+    /// Represents a series, such as splits in a regional league.
+    /// </summary>
     public class Series
     {
         #region Properties
@@ -27,13 +30,15 @@ namespace PandaScore.NET.LoL
         [JsonProperty("name")]
         public string Name { get; private set; }
         [JsonProperty("prizepool")]
-        public int? Prizepool { get; private set; }
+        public string Prizepool { get; private set; }
         [JsonProperty("season")]
         public string Season { get; private set; }
         [JsonProperty("slug")]
         public string Slug { get; private set; }
         [JsonProperty("tournaments")]
         public Tournament[] Tournaments { get; private set; }
+        [JsonProperty("videogame")]
+        public Winner Winner { get; private set; }
         [JsonProperty("winner_id")]
         public int? WinnerId { get; private set; }
         [JsonProperty("winner_type")]

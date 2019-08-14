@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScore.NET.LoL
 {
+    /// <summary>
+    /// Represents a League of Legends League, such as LEC or LCS.
+    /// </summary>
     public class League
     {
         #region Properties
@@ -24,6 +27,8 @@ namespace PandaScore.NET.LoL
         public string Slug { get; private set; }
         [JsonProperty("url")]
         public string Url { get; private set; }
+        [JsonProperty("videogame")]
+        public string VideoGame { get; private set; }
         #endregion
 
         #region Equals_HashCode

@@ -29,8 +29,8 @@ namespace PandaScore.NET.LoL
         public QueryOption<float> FlatMagicResist { get; } = new QueryOption<float>("flat_spell_block_mod", QueryOptionType.FilterRangeSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
         public QueryOption<float> GoldBase { get; } = new QueryOption<float>("gold_base", QueryOptionType.FilterRangeSort);
-        /// <summary>Can be used to filter or range, or as a search term. </summary>
-        public QueryOption<bool> Purchasable { get; } = new QueryOption<bool>("gold_purchasable", QueryOptionType.FilterSearchSort);
+        /// <summary>Can be used to filter, sort and range. </summary>
+        public QueryOption<bool> Purchasable { get; } = new QueryOption<bool>("gold_purchasable", QueryOptionType.FilterRangeSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
         public QueryOption<float> SellValue { get; } = new QueryOption<float>("gold_sell", QueryOptionType.FilterRangeSort);
         /// <summary>Can be used to filter, sort, and range. </summary>
@@ -39,8 +39,8 @@ namespace PandaScore.NET.LoL
         public QueryOption<int> Id { get; private set; } = new QueryOption<int>("id", QueryOptionType.FilterRangeSort);
         /// <summary>Can be used to filter, sort, range, or as a search term. </summary>
         public QueryOption<string> ImageUrl { get; private set; } = new QueryOption<string>("image_url", QueryOptionType.All);
-        /// <summary>Can be used to filter or range, or as a search term. </summary>
-        public QueryOption<bool> IsTrinket { get; private set; } = new QueryOption<bool>("is_trinket", QueryOptionType.FilterSearchSort);
+        /// <summary>Can be used to filter, sort and range. </summary>
+        public QueryOption<bool> IsTrinket { get; private set; } = new QueryOption<bool>("trinket", QueryOptionType.FilterRangeSort);
         /// <summary>Can be used to filter, sort, range, or as a search term. </summary>
         public QueryOption<string> Name { get; private set; } = new QueryOption<string>("name", QueryOptionType.All);
         /// <summary>Can be used to filter, sort, and range. </summary>

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScore.NET.LoL
 {
+    /// <summary>
+    /// Represents a block of matches inside a series, such as playoffs or regular season, or a specific tournament.
+    /// </summary>
     public class Tournament
     {
         #region Properties

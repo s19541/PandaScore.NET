@@ -40,6 +40,10 @@ namespace PandaScore.NET.LoL
         public Team[] Teams { get; private set; }
         [JsonProperty("video_url")]
         public string VideoUrl { get; private set; }
+        [JsonProperty]
+        public Winner Winner { get; private set; }
+        [JsonProperty("winner_type")]
+        public string WinnerType { get; private set; }
         #endregion
 
         #region Equals_HashCode

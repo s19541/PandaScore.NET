@@ -2,7 +2,9 @@
 
 This is a PandaScore API library for .NET.
 
-It is very much a work in progress at this moment, with many query options not yet implemented.
+Query options (other than game statistics) are implemented, with improvements coming soon.
+
+Currently, you can make queries for League of Legends champions, items, summoner spells, runes, masteries, players, teams, matches, leagues, game series and tournaments.
 
 ## Getting Started
 

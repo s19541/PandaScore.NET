@@ -89,8 +89,8 @@ namespace PandaScore.NET
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Team> GetTeamAsync(int id)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "teams", id, AccessToken));
-            return await GetSingle<Team>(uri);
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "teams", id, AccessToken));
+            return await GetSingleFromArray<Team>(uri);
         }
 
         /// <summary>
@@ -267,10 +267,60 @@ namespace PandaScore.NET
         #endregion
 
         #region Tournaments
-        public async Task<Tournament> GetTournament(int id)
+        /// <summary>
+        /// Gets a tournament based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a tournament.</param>
+        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <returns>A Tournament object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Tournament> GetTournamentAsync(int id, TournamentStatus status = TournamentStatus.All)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "tournaments", id, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), id, AccessToken));
             return await GetSingleFromArray<Tournament>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first tournament that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Tournament> GetSingleTournamentAsync(TournamentQueryOptions options, TournamentStatus status = TournamentStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            return await GetSingleFromArray<Tournament>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of tournaments.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <returns>An array containing all tournaments that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Tournament[]> GetTournamentsAsync(TournamentQueryOptions options, TournamentStatus status = TournamentStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            return await GetMany<Tournament>(uri);
+        }
+
+        /// <summary>
+        /// Iterator to get results lazily in a paginated form.
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <param name="pageSize">How many results should be returned per iteration.</param>
+        /// <returns>Arrays of query results.</returns>
+        public IEnumerable<Tournament[]> GetTournamentsLazy(TournamentQueryOptions options, int pageSize = 50, TournamentStatus status = TournamentStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
+            var iterator = GetManyLazy<Tournament>(uri);
+            while (iterator.MoveNext())
+            {
+                yield return iterator.Current;
+            }
         }
         #endregion
 
@@ -573,6 +623,30 @@ namespace PandaScore.NET
 
             return null;
         }
+
+        string GetTournamentDomainString(TournamentStatus category)
+        {
+            switch (category)
+            {
+                case TournamentStatus.All:
+                    return "";
+                case TournamentStatus.Past:
+                    return @"\past";
+                case TournamentStatus.Running:
+                    return @"\running";
+                case TournamentStatus.Upcoming:
+                    return @"\upcoming";
+            }
+            return "";
+        }
         #endregion
+    }
+
+    public enum TournamentStatus
+    {
+        All,
+        Past,
+        Running,
+        Upcoming,
     }
 }

@@ -38,7 +38,7 @@ namespace PandaScore.NET.LoL.QueryOptions
         /// Gets the query string portion of a request.
         /// </summary>
         /// <returns>Query string, formatted as required by the PandaScore API.</returns>
-        internal string GetQueryString()
+        internal virtual string GetQueryString()
         {
             var groups = properties.GroupBy(x => x.CurrentType);
             string filterString = null, searchString = null, rangeString = null, sortString = null;

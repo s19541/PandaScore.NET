@@ -32,6 +32,12 @@ namespace PandaScore.NET.LoL
         public string Slug { get; private set; }
         [JsonProperty("teams")]
         public Team[] Teams { get; private set; }
+        [JsonProperty("videogame")]
+        public VideoGame VideoGame { get; private set; }
+        [JsonProperty("winner_id")]
+        public int WinnerId { get; private set; }
+        [JsonProperty("winner_type")]
+        public string WinnerType { get; private set; }
         #endregion
 
         #region Equals_HashCode

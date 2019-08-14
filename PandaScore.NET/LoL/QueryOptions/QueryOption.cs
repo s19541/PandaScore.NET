@@ -184,6 +184,12 @@ namespace PandaScore.NET.LoL
         
         internal override string ToFilterString()
         {
+            if (filterValue.GetType() == typeof(DateTime))
+            {
+                var dateTime = (DateTime)(object)filterValue;
+                dateTime = dateTime.ToUniversalTime();
+                return $"filter[{optionName}]={dateTime.ToString("o")}";
+            }
             if (filterValue is IFormattable f)
             {
                 return $"filter[{optionName}]={f.ToString("", numberFormat)}";

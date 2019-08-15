@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PandaScore.NET.LoL
+namespace PandaScoreNET.LoL
 {
     /// <summary>
     /// Represents a League of Legends League, such as LEC or LCS.

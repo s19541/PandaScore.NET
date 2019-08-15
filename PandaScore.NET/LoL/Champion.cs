@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace PandaScore.NET.LoL
+namespace PandaScoreNET.LoL
 {
     public class Champion
     {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PandaScore.NET.LoL
+namespace PandaScoreNET.LoL
 {
     public enum PlayerRole { top, jun, mid, adc, sup }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace PandaScore.NET.LoL.QueryOptions
+namespace PandaScoreNET.LoL.QueryOptions
 {
     public abstract class QueryConfiguration
     {

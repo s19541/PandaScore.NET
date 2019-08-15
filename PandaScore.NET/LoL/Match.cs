@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PandaScore.NET.LoL
+namespace PandaScoreNET.LoL
 {
     /// <summary>
     /// Represents a specific match, such as a regular season Bo1, or a playoff match.

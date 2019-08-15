@@ -1,4 +1,4 @@
-﻿using PandaScore.NET.LoL.QueryOptions;
+﻿using PandaScoreNET.LoL.QueryOptions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace PandaScore.NET.LoL
+namespace PandaScoreNET.LoL
 {
     public class ChampionQueryOptions : QueryConfiguration
     {

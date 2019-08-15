@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PandaScore.NET.LoL
+namespace PandaScoreNET.LoL
 {
     /// <summary>
     /// Represents a block of matches inside a series, such as playoffs or regular season, or a specific tournament.

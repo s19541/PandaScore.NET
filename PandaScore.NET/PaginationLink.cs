@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PandaScore.NET
+namespace PandaScoreNET
 {
     public enum PaginationLinkType
     {

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using PandaScore.NET.LoL;
+using PandaScoreNET.LoL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PandaScore.NET
+namespace PandaScoreNET
 {
     /// <summary>
     /// The main entry point into the API. Use to make requests from PandaScore.

@@ -8,7 +8,7 @@ namespace PandaScoreNET.LoL
     public class Winner
     {
         [JsonProperty("id")]
-        public int ID { get; private set; }
+        public int? ID { get; private set; }
         [JsonProperty("type")]
         public string Type { get; private set; }
 

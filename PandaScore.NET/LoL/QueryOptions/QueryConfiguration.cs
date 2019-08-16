@@ -62,7 +62,7 @@ namespace PandaScoreNET.LoL.QueryOptions
                 }
             }
             //has to be done separately to keep sort ordering
-            sortString = "sort=" + string.Join(",", sortStringOrder);
+            sortString = sortStringOrder.Count > 0 ? "sort=" + string.Join(",", sortStringOrder) : "";
             return string.Join("&", filterString, searchString, rangeString, sortString);
         }
     }

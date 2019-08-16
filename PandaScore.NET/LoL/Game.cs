@@ -12,9 +12,9 @@ namespace PandaScoreNET.LoL
     {
         #region Properties
         [JsonProperty("begin_at")]
-        public DateTime BeginAt { get; private set; }
+        public DateTime? BeginAt { get; private set; }
         [JsonProperty("end_at")]
-        public DateTime EndAt { get; private set; }
+        public DateTime? EndAt { get; private set; }
         [JsonProperty("finished")]
         public bool Finished { get; private set; }
         [JsonProperty("forfeit")]
@@ -22,7 +22,7 @@ namespace PandaScoreNET.LoL
         [JsonProperty("id")]
         public int Id { get; private set; }
         [JsonProperty("length")]
-        public float Length { get; private set; }
+        public float? Length { get; private set; }
         [JsonProperty("match")]
         public Match Match { get; private set; }
         [JsonProperty("match_id")]
@@ -40,7 +40,7 @@ namespace PandaScoreNET.LoL
         public Team[] Teams { get; private set; }
         [JsonProperty("video_url")]
         public string VideoUrl { get; private set; }
-        [JsonProperty]
+        [JsonProperty("winner")]
         public Winner Winner { get; private set; }
         [JsonProperty("winner_type")]
         public string WinnerType { get; private set; }

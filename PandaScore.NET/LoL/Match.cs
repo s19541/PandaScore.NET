@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PandaScore.NET;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,9 +13,9 @@ namespace PandaScoreNET.LoL
     {
         #region Properties
         [JsonProperty("begin_at")]
-        public DateTime BeginAt { get; private set; }
+        public DateTime? BeginAt { get; private set; }
         [JsonProperty("end_at")]
-        public DateTime EndAt { get; private set; }
+        public DateTime? EndAt { get; private set; }
         [JsonProperty("draw")]
         public bool Draw { get; private set; }
         [JsonProperty("forfeit")]
@@ -32,13 +33,13 @@ namespace PandaScoreNET.LoL
         [JsonProperty("match_type")]
         public string MatchType { get; private set; }
         [JsonProperty("modified_at")]
-        public DateTime ModifiedAt { get; private set; }
+        public DateTime? ModifiedAt { get; private set; }
         [JsonProperty("name")]
         public string Name { get; private set; }
         [JsonProperty("number_of_games")]
         public int NumberOfGames { get; private set; }
         [JsonProperty("scheduled_at")]
-        public DateTime ScheduledAt { get; private set; }
+        public DateTime? ScheduledAt { get; private set; }
         [JsonProperty("serie")]
         public Series Series { get; private set; }
         [JsonProperty("series_id")]
@@ -54,11 +55,11 @@ namespace PandaScoreNET.LoL
         [JsonProperty("videogame")]
         public VideoGame VideoGame { get; private set; }
         [JsonProperty("videogame_version")]
-        public string VideoGameVersion { get; private set; }
+        public VideoGameVersion VideoGameVersion { get; private set; }
         [JsonProperty("winner")]
         public Winner Winner { get; private set; }
         [JsonProperty("winner_id")]
-        public int WinnerId { get; private set; }
+        public int? WinnerId { get; private set; }
 
         #endregion
     }

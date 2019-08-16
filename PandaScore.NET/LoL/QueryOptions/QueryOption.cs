@@ -196,12 +196,20 @@ namespace PandaScoreNET.LoL
             }
             else
             {
-                return $"filter[{optionName}]={filterValue}";
+                return $"filter[{optionName}]={(filterValue)}".ToLower();
             }
         }
 
         internal override string ToRangeString()
         {
+            if (filterValue.GetType() == typeof(DateTime))
+            {
+                var minDateTime = (DateTime)(object)min;
+                var maxDateTime = (DateTime)(object)max;
+                minDateTime = minDateTime.ToUniversalTime();
+                maxDateTime = maxDateTime.ToUniversalTime();
+                return $"range[{optionName}]={minDateTime.ToString("o")}, {maxDateTime.ToString("o")}";
+            }
             if (min is IFormattable minValue)
             {
                 IFormattable maxValue = max as IFormattable;

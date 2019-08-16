@@ -12,7 +12,7 @@ namespace PandaScoreNET.LoL
     {
         #region Properties
         [JsonProperty("begin_at")]
-        public DateTime BeginAt { get; private set; }
+        public DateTime? BeginAt { get; private set; }
         [JsonProperty("end_at")]
         public DateTime? EndAt { get; private set; }
         [JsonProperty("id")]
@@ -38,7 +38,7 @@ namespace PandaScoreNET.LoL
         [JsonProperty("videogame")]
         public VideoGame VideoGame { get; private set; }
         [JsonProperty("winner_id")]
-        public int WinnerId { get; private set; }
+        public int? WinnerId { get; private set; }
         [JsonProperty("winner_type")]
         public string WinnerType { get; private set; }
         #endregion

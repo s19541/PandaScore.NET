@@ -291,7 +291,7 @@ namespace PandaScoreNET
         /// <returns>Arrays of query results.</returns>
         public IEnumerable<Match[]> GetMatchesLazy(MatchQueryOptions options, int pageSize = 50, GameCollectionStatus status = GameCollectionStatus.All)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "matches", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&page[size]={4}&token={5}", Domain, "matches", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
             var iterator = GetManyLazy<Match>(uri);
             while (iterator.MoveNext())
             {
@@ -349,7 +349,7 @@ namespace PandaScoreNET
         /// <returns>Arrays of query results.</returns>
         public IEnumerable<Series[]> GetSeriesLazy(SeriesQueryOptions options, int pageSize = 50, GameCollectionStatus status = GameCollectionStatus.All)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&page[size]={4}&token={5}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
             var iterator = GetManyLazy<Series>(uri);
             while (iterator.MoveNext())
             {
@@ -415,7 +415,7 @@ namespace PandaScoreNET
         /// <returns>Arrays of query results.</returns>
         public IEnumerable<Tournament[]> GetTournamentsLazy(TournamentQueryOptions options, int pageSize = 50, GameCollectionStatus status = GameCollectionStatus.All)
         {
-            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&page[size]={4}&token={5}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), pageSize, AccessToken));
             var iterator = GetManyLazy<Tournament>(uri);
             while (iterator.MoveNext())
             {

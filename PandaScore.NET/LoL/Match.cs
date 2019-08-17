@@ -28,6 +28,8 @@ namespace PandaScoreNET.LoL
         public League League { get; private set; }
         [JsonProperty("league_id")]
         public int LeagueId { get; private set; }
+        [JsonProperty("live")]
+        public LiveData LiveData { get; private set; }
         [JsonProperty("live_url")]
         public string LiveUrl { get; private set; }
         [JsonProperty("match_type")]
@@ -38,6 +40,10 @@ namespace PandaScoreNET.LoL
         public string Name { get; private set; }
         [JsonProperty("number_of_games")]
         public int NumberOfGames { get; private set; }
+        [JsonProperty("opponents")]
+        public TeamOpponent[] Opponents { get; private set; }
+        [JsonProperty("results")]
+        public MatchResults[] Results { get; private set; }
         [JsonProperty("scheduled_at")]
         public DateTime? ScheduledAt { get; private set; }
         [JsonProperty("serie")]
@@ -47,7 +53,7 @@ namespace PandaScoreNET.LoL
         [JsonProperty("slug")]
         public string Slug { get; private set; }
         [JsonProperty("status")]
-        public string Status { get; private set; }
+        public MatchStatus Status { get; private set; }
         [JsonProperty("tournament")]
         public Tournament Tournament { get; private set; }
         [JsonProperty("tournament_id")]

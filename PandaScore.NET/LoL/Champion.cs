@@ -56,7 +56,7 @@ namespace PandaScoreNET.LoL
         [JsonProperty("spellblockperlevel")]
         public float MagicResistPerLevel { get; private set; }
         [JsonProperty("videogame_versions")]
-        public string[] VideoGameVersions { get; private set; }
+        public Version[] VideoGameVersions { get; private set; }
         #endregion
 
         #region Constructors

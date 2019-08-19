@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace PandaScoreNET
     public struct VideoGame
     {
         [JsonProperty("current_version")]
-        public string CurrentVersion { get; private set; }
+        public Version CurrentVersion { get; private set; }
         [JsonProperty("id")]
         public int Id { get; private set; }
         [JsonProperty("name")]

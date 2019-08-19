@@ -17,11 +17,11 @@ Queries correspond to model objects, such as Champions, Items, Matches, etc.
 Most methods on PandaScoreLoLProvider take a model-appropriate ...QueryOption parameter, such as ChampionQueryOption. Each of these classes contain the properties that you can use to make your queries. 
 Current operations on these properties are:
 
-Filter: used to match a value exactly
-Search: matches results that contain the search term
-Range: used to give a range of acceptable values
-Sort: sort results in ascending order by a property
-SortDescending: sort results in descending order by a property
+* Filter: used to match a value exactly
+* Search: matches results that contain the search term
+* Range: used to give a range of acceptable values
+* Sort: sort results in ascending order by a property
+* SortDescending: sort results in descending order by a property
 
 There are also counterparts to these to unset a query option.
 

@@ -33,7 +33,7 @@ namespace PandaScoreNET.LoL
         [JsonProperty("live_url")]
         public string LiveUrl { get; private set; }
         [JsonProperty("match_type")]
-        public string MatchType { get; private set; }
+        public MatchType MatchType { get; private set; }
         [JsonProperty("modified_at")]
         public DateTime? ModifiedAt { get; private set; }
         [JsonProperty("name")]

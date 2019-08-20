@@ -1,0 +1,878 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PandaScore.NET</name>
+    </assembly>
+    <members>
+        <member name="T:PandaScoreNET.LoL.Game">
+            <summary>
+            Represents a single game of League of Legends.
+            </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.Game.Position">
+            <summary>
+            This game's position in a series.
+            </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.League">
+            <summary>
+            Represents a League of Legends League, such as LEC or LCS.
+            </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.Match">
+            <summary>
+            Represents a specific match, such as a regular season Bo1, or a playoff match.
+            </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.Armor">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.ArmorPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.AttackDamage">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.AttackDamagePerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.AttackRange">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.AttackSpeedOffset">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.AttackSpeedPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.BigImageUrl">
+            <summary>A URL pointing to the champion's image. Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.Crit">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.CritPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.Hp">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.HpPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.HpRegen">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.HpRegenPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.ImageUrl">
+            <summary>A URL pointing the champion's image. Can be used to filter, sort, range, or as a seach term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.MoveSpeed">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.ManaPoints">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.ManaPointsPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.ManaRegen">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.ManaRegenPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.MagicResist">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.MagicResistPerLevel">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatArmor">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatCritChance">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatHp">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatHpRegen">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatAbilityPower">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatMovementSpeed">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatMana">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatManaRegen">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatAttackDamage">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatMagicResist">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.GoldBase">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.Purchasable">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.SellValue">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.TotalGold">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.ImageUrl">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.IsTrinket">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.PercentAttackSpeed">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.PercentLifesteal">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.ItemQueryOptions.PercentMovementSpeed">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.ImageUrl">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.LiveSupported">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.ModifiedAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.Slug">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.Url">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MasteryQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MasteryQueryOptions.Name">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Draw">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Forfeit">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Finished">
+            <summary>Can be used to filter.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Future">
+            <summary>Can be used to filter.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.NotStarted">
+            <summary>Can be used to filter.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Past">
+            <summary>Can be used to filter.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Running">
+            <summary>Can be used to filter.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Unscheduled">
+            <summary>Can be used to filter.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.BeginAt">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.EndAt">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.ModifiedAt">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.ScheduledAt">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Id">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.LeagueId">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.LiveUrl">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.MatchType">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.NumberOfGames">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.SeriesId">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Slug">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Status">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.TournamentId">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.MatchQueryOptions.WinnerId">
+            <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.FirstName">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.Country">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.ImageUrl">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.LastName">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.Role">
+            <summary>Can be used to filter, sort, range, or as a search term. Acceptable values are: top, jun, mid, adc, sup. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.Slug">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOptions.QueryConfiguration.GetQueryString">
+            <summary>
+            Gets the query string portion of a request.
+            </summary>
+            <returns>Query string, formatted as required by the PandaScore API.</returns>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.Filter(`0)">
+            <summary>
+            Sets the query to return items that match this value exactly.
+            </summary>
+            <param name="value">Value of the filter.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the property cannot be used to filter results or when the supplied value is null.</exception>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.Range(`0,`0)">
+            <summary>
+            Sets the query to return items that fall within this range. 
+            </summary>
+            <param name="min">Lower bound of the range.</param>
+            <param name="max">Upper bound of the range.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the property cannot be used to filter results or when one or both of the supplied values is null.</exception>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.Sort">
+            <summary>
+            Sorts results by this property in ascending order. The ordering of sort options is important!
+            </summary>
+            <exception cref="T:System.ArgumentException">Thrown when the property cannot be used to sort results.</exception>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.SortDescending">
+            <summary>
+            Sorts results by this property in descending order. The ordering of sort options is important!
+            </summary>
+            <exception cref="T:System.ArgumentException">Thrown when the property cannot be used to sort results.</exception>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.Search(System.String)">
+            <summary>
+            Sets the query to search items that contain this value. Can only be used with string values.
+            </summary>
+            <param name="value">Search term.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the property cannot be used to filter results or when the supplied value is null.</exception>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.UnsetFilter">
+            <summary>
+            Removes any filters applied to this property.
+            </summary>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.UnsetSearch">
+            <summary>
+            Removes any search terms applied to this property.
+            </summary>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.UnsetRange">
+            <summary>
+            Removes any range values applied to this property.
+            </summary>
+        </member>
+        <member name="M:PandaScoreNET.LoL.QueryOption`1.UnsetSort">
+            <summary>
+            Removes any sorting options applied to this property.
+            </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.RuneQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.RuneQueryOptions.Name">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.BeginAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Description">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.EndAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.FullName">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.LeagueId">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.ModifiedAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Prizepool">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Season">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Slug">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.WinnerId">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.WinnerType">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Year">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SpellQueryOptions.Id">
+            <summary>Can be used to filter, sort, and give a value range to a query.</summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SpellQueryOptions.Name">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.SpellQueryOptions.ImageUrl">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TeamQueryOptions.Acronym">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TeamQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TeamQueryOptions.ImageUrl">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TeamQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TeamQueryOptions.Slug">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.BeginAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.EndAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.Id">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.LeagueId">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.ModifiedAt">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.Name">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.SeriesId">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.Slug">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.WinnerId">
+            <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.WinnerType">
+            <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.Series">
+            <summary>
+            Represents a series, such as splits in a regional league.
+            </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.Tournament">
+            <summary>
+            Represents a block of matches inside a series, such as playoffs or regular season, or a specific tournament.
+            </summary>
+        </member>
+        <member name="T:PandaScoreNET.PandaScoreLoLProvider">
+            <summary>
+            The main entry point into the API. Use to make requests from PandaScore.
+            </summary>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.#ctor(System.String)">
+            <param name="accessToken">Your PandaScore Access Token.</param>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetPlayer(System.Int32)">
+            <summary>
+            Gets a player based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to an player.</param>
+            <returns>A Player object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetPlayerAsync(System.Int32)">
+            <summary>
+            Gets a player based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to an player.</param>
+            <returns>A Player object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSinglePlayer(PandaScoreNET.LoL.PlayerQueryOptions)">
+            <summary>
+            Gets the first player that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Player object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSinglePlayerAsync(PandaScoreNET.LoL.PlayerQueryOptions)">
+            <summary>
+            Gets the first player that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Player object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetPlayers(PandaScoreNET.LoL.PlayerQueryOptions)">
+            <summary>
+            Queries for a matching array of players.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all players that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetPlayersAsync(PandaScoreNET.LoL.PlayerQueryOptions)">
+            <summary>
+            Queries for a matching array of players.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all players that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetPlayersLazy(PandaScoreNET.LoL.PlayerQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeamAsync(System.Int32)">
+            <summary>
+            Gets a team based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a team.</param>
+            <returns>A Team object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleTeamAsync(PandaScoreNET.LoL.TeamQueryOptions)">
+            <summary>
+            Gets the first team that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Team object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeamsAsync(PandaScoreNET.LoL.TeamQueryOptions)">
+            <summary>
+            Queries for a matching array of teams.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all teams that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeamsLazy(PandaScoreNET.LoL.TeamQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItemAsync(System.Int32)">
+            <summary>
+            Gets an Item based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to an item.</param>
+            <returns>An Item object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleItemAsync(PandaScoreNET.LoL.ItemQueryOptions)">
+            <summary>
+            Gets the first Item that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Item object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItemsAsync(PandaScoreNET.LoL.ItemQueryOptions)">
+            <summary>
+            Queries for a matching array of items.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all items that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItemsLazy(PandaScoreNET.LoL.ItemQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampionAsync(System.Int32)">
+            <summary>
+            Gets a <c>Champion</c> based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a champion.</param>
+            <returns>A <c>Champion</c> object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleChampionAsync(PandaScoreNET.LoL.ChampionQueryOptions)">
+            <summary>
+            Gets the first champion that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampionsAsync(PandaScoreNET.LoL.ChampionQueryOptions)">
+            <summary>
+            Queries for a matching array of champions.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all champions that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampionsLazy(PandaScoreNET.LoL.ChampionQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMatch(System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets a match based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a match.</param>
+            <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+            <returns>A match object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMatchAsync(System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets a match based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a match.</param>
+            <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+            <returns>A match object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleMatch(PandaScoreNET.LoL.MatchQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets the first match that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+            <returns>A single Match object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleMatchAsync(PandaScoreNET.LoL.MatchQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets the first match that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+            <returns>A single Match object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMatches(PandaScoreNET.LoL.MatchQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Queries for a matching array of game matches.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <param name="category">Completion status of the matches to be queried. Defaults to All.</param>
+            <returns>An array containing all series that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMatchesAsync(PandaScoreNET.LoL.MatchQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Queries for a matching array of game matches.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <param name="category">Completion status of the matches to be queried. Defaults to All.</param>
+            <returns>An array containing all series that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMatchesLazy(PandaScoreNET.LoL.MatchQueryOptions,System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the matches to be queried. Defaults to All.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSeriesAsync(System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets a series based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a series.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <returns>A Series object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSeriesAsync(PandaScoreNET.LoL.SeriesQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets the first series that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <returns>A single Series object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSeriesAsync(PandaScoreNET.LoL.SeriesQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Queries for a matching array of series.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <returns>An array containing all series that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSeriesLazy(PandaScoreNET.LoL.SeriesQueryOptions,System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournamentAsync(System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets a tournament based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a tournament.</param>
+            <param name="category">Completion status of the tournament to be queried. Defaults to All.</param>
+            <returns>A Tournament object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleTournamentAsync(PandaScoreNET.LoL.TournamentQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets the first tournament that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+            <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournamentsAsync(PandaScoreNET.LoL.TournamentQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Queries for a matching array of tournaments.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+            <returns>An array containing all tournaments that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournamentsLazy(PandaScoreNET.LoL.TournamentQueryOptions,System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeagueAsync(System.Int32)">
+            <summary>
+            Gets a league based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a league.</param>
+            <returns>A League object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleLeagueAsync(PandaScoreNET.LoL.LeagueQueryOptions)">
+            <summary>
+            Gets the first league that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single League object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeaguesAsync(PandaScoreNET.LoL.LeagueQueryOptions)">
+            <summary>
+            Queries for a matching array of leagues.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all leagues that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeaguesLazy(PandaScoreNET.LoL.LeagueQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRuneAsync(System.Int32)">
+            <summary>
+            Gets a rune based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a rune.</param>
+            <returns>A Rune object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleRuneAsync(PandaScoreNET.LoL.RuneQueryOptions)">
+            <summary>
+            Gets the first rune that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Rune object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRunesAsync(PandaScoreNET.LoL.RuneQueryOptions)">
+            <summary>
+            Queries for a matching array of runes.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all runes that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRunesLazy(PandaScoreNET.LoL.RuneQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpellAsync(System.Int32)">
+            <summary>
+            Gets a spell based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a spell.</param>
+            <returns>A Spell object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSpellAsync(PandaScoreNET.LoL.SpellQueryOptions)">
+            <summary>
+            Gets the first spell that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Spell object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpellsAsync(PandaScoreNET.LoL.SpellQueryOptions)">
+            <summary>
+            Queries for a matching array of spells.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all spells that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpellLazy(PandaScoreNET.LoL.SpellQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMasteryAsync(System.Int32)">
+            <summary>
+            Gets a Mastery based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a mastery.</param>
+            <returns>A Mastery object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleMasteryAsync(PandaScoreNET.LoL.MasteryQueryOptions)">
+            <summary>
+            Gets the first mastery that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Mastery object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMasteriesAsync(PandaScoreNET.LoL.MasteryQueryOptions)">
+            <summary>
+            Queries for a matching array of masteries.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all masteries that match the search options.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItemsLazy(PandaScoreNET.LoL.MasteryQueryOptions,System.Int32)">
+            <summary>
+            Iterator to get results lazily in a paginated form.
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="pageSize">How many results should be returned per iteration.</param>
+            <returns>Arrays of query results.</returns>
+        </member>
+    </members>
+</doc>

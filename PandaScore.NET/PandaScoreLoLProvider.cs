@@ -27,6 +27,21 @@ namespace PandaScoreNET
         #region PublicInterface
 
         #region Players
+
+        /// <summary>
+        /// Gets a player based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to an player.</param>
+        /// <returns>A Player object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Player GetPlayer(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "players", id, AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Player>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
         /// <summary>
         /// Gets a player based on its numeric ID.
         /// </summary>
@@ -39,6 +54,21 @@ namespace PandaScoreNET
             return await GetSingleFromArray<Player>(uri);
         }
 
+
+        /// <summary>
+        /// Gets the first player that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Player object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Player GetSinglePlayer(PlayerQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "players", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Player>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
         /// <summary>
         /// Gets the first player that matches the query options. Even if there is more than one matching result, only the first will be returned!
         /// </summary>
@@ -49,6 +79,21 @@ namespace PandaScoreNET
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "players", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Player>(uri);
+        }
+
+
+        /// <summary>
+        /// Queries for a matching array of players.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all players that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Player[] GetPlayers(PlayerQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "players", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Player>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -87,6 +132,20 @@ namespace PandaScoreNET
         /// <param name="id">A numeric ID belonging to a team.</param>
         /// <returns>A Team object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Team GetTeam(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "teams", id, AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Team>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a team based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a team.</param>
+        /// <returns>A Team object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Team> GetTeamAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "teams", id, AccessToken));
@@ -99,10 +158,38 @@ namespace PandaScoreNET
         /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single Team object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Team GetSingleTeam(TeamQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "teams", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Team>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first team that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Team object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Team> GetSingleTeamAsync(TeamQueryOptions options)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "teams", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Team>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of teams.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all teams that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Team[] GetTeams(TeamQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "teams", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Team>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -141,10 +228,38 @@ namespace PandaScoreNET
         /// <param name="id">A numeric ID belonging to an item.</param>
         /// <returns>An Item object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Item GetItem(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "items", id, AccessToken));
+            var task = Task.Run(() => GetSingle<Item>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets an Item based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to an item.</param>
+        /// <returns>An Item object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Item> GetItemAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "items", id, AccessToken));
             return await GetSingle<Item>(uri);
+        }
+        
+        /// <summary>
+        /// Gets the first Item that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Item object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Item GetSingleItem(ItemQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "items", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Item>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -158,7 +273,21 @@ namespace PandaScoreNET
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "items", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Item>(uri);
         }
-        
+
+        /// <summary>
+        /// Queries for a matching array of items.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all items that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Item[] GetItems(ItemQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "items", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Item>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
         /// <summary>
         /// Queries for a matching array of items.
         /// </summary>
@@ -195,6 +324,20 @@ namespace PandaScoreNET
         /// <param name="id">A numeric ID belonging to a champion.</param>
         /// <returns>A <c>Champion</c> object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Champion GetChampion(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "champions", id, AccessToken));
+            var task = Task.Run(() => GetSingle<Champion>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a <c>Champion</c> based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a champion.</param>
+        /// <returns>A <c>Champion</c> object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Champion> GetChampionAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "champions", id, AccessToken));
@@ -207,10 +350,38 @@ namespace PandaScoreNET
         /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Champion GetSingleChampion(ChampionQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "champions", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Champion>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first champion that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Champion> GetSingleChampionAsync(ChampionQueryOptions options)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "champions", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Champion>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of champions.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all champions that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Champion[] GetChampions(ChampionQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "champions", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Champion>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -250,6 +421,21 @@ namespace PandaScoreNET
         /// <param name="category">Completion status of the match to be queried. Defaults to All.</param>
         /// <returns>A match object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Match GetMatch(int id, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "matches", GetTournamentDomainString(status), id, AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Match>(uri));
+            task.Wait();
+            return task.Result;
+        }
+        
+        /// <summary>
+        /// Gets a match based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a match.</param>
+        /// <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+        /// <returns>A match object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Match> GetMatchAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "matches", GetTournamentDomainString(status), id, AccessToken));
@@ -263,10 +449,40 @@ namespace PandaScoreNET
         /// <param name="category">Completion status of the match to be queried. Defaults to All.</param>
         /// <returns>A single Match object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Match GetSingleMatch(MatchQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "match", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Match>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first match that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the match to be queried. Defaults to All.</param>
+        /// <returns>A single Match object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Match> GetSingleMatchAsync(MatchQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "match", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Match>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of game matches.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="category">Completion status of the matches to be queried. Defaults to All.</param>
+        /// <returns>An array containing all series that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Match[] GetMatches(MatchQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "matches", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Match>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -308,10 +524,40 @@ namespace PandaScoreNET
         /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
         /// <returns>A Series object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
-        public async Task<Series> GetSeriesAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
+        public Series GetSingleSeries(int id, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "series", GetTournamentDomainString(status), id, AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Series>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a series based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a series.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <returns>A Series object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public async Task<Series> GetSingleSeriesAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "series", GetTournamentDomainString(status), id, AccessToken));
             return await GetSingleFromArray<Series>(uri);
+        }
+
+        /// <summary>
+        /// Gets the first series that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <returns>A single Series object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Series GetSingleSeries(SeriesQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Series>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -325,6 +571,21 @@ namespace PandaScoreNET
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Series>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of series.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+        /// <returns>An array containing all series that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Series[] GetSeries(SeriesQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "series", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Series>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -374,6 +635,21 @@ namespace PandaScoreNET
         /// <param name="category">Completion status of the tournament to be queried. Defaults to All.</param>
         /// <returns>A Tournament object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Tournament GetTournament(int id, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), id, AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Tournament>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a tournament based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a tournament.</param>
+        /// <param name="category">Completion status of the tournament to be queried. Defaults to All.</param>
+        /// <returns>A Tournament object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Tournament> GetTournamentAsync(int id, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?filter[id]={3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), id, AccessToken));
@@ -387,10 +663,40 @@ namespace PandaScoreNET
         /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
         /// <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Tournament GetSingleTournament(TournamentQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            var task = Task.Run(() =>  GetSingleFromArray<Tournament>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first tournament that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Tournament> GetSingleTournamentAsync(TournamentQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Tournament>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of tournaments.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+        /// <returns>An array containing all tournaments that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Tournament[] GetTournaments(TournamentQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Tournament>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -431,6 +737,20 @@ namespace PandaScoreNET
         /// <param name="id">A numeric ID belonging to a league.</param>
         /// <returns>A League object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public League GetLeague(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "leagues", id, AccessToken));
+            var task = Task.Run(() =>  GetSingleFromArray<League>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a league based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a league.</param>
+        /// <returns>A League object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<League> GetLeagueAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "leagues", id, AccessToken));
@@ -443,10 +763,38 @@ namespace PandaScoreNET
         /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single League object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public League GetSingleLeague(LeagueQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "leagues", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<League>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first league that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single League object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<League> GetSingleLeagueAsync(LeagueQueryOptions options)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "leagues", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<League>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of leagues.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all leagues that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public League[] GetLeagues(LeagueQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "leagues", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<League>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -485,6 +833,20 @@ namespace PandaScoreNET
         /// <param name="id">A numeric ID belonging to a rune.</param>
         /// <returns>A Rune object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Rune GetRune(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "runes", id, AccessToken));
+            var task = Task.Run(() => GetSingle<Rune>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a rune based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a rune.</param>
+        /// <returns>A Rune object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Rune> GetRuneAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "runes", id, AccessToken));
@@ -497,10 +859,38 @@ namespace PandaScoreNET
         /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single Rune object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Rune GetSingleRune(RuneQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "runes", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Rune>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first rune that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Rune object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Rune> GetSingleRuneAsync(RuneQueryOptions options)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "runes", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Rune>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of runes.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all runes that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Rune[] GetRunes(RuneQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "runes", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Rune>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -539,6 +929,20 @@ namespace PandaScoreNET
         /// <param name="id">A numeric ID belonging to a spell.</param>
         /// <returns>A Spell object with the specified ID.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Spell GetSpell(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "spells", id, AccessToken));
+            var task = Task.Run(() => GetSingle<Spell>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets a spell based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a spell.</param>
+        /// <returns>A Spell object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Spell> GetSpellAsync(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "spells", id, AccessToken));
@@ -551,10 +955,38 @@ namespace PandaScoreNET
         /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single Spell object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Spell GetSingleSpell(SpellQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "spells", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Spell>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first spell that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Spell object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Spell> GetSingleSpellAsync(SpellQueryOptions options)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "spells", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Spell>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of spells.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all spells that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Spell[] GetSpells(SpellQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "spells", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Spell>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>
@@ -586,7 +1018,21 @@ namespace PandaScoreNET
         }
         #endregion
 
-        #region Masteries
+        #region Masteries    
+        /// <summary>
+        /// Gets a Mastery based on its numeric ID.
+        /// </summary>
+        /// <param name="id">A numeric ID belonging to a mastery.</param>
+        /// <returns>A Mastery object with the specified ID.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Mastery GetMastery(int id)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "masteries", id, AccessToken));
+            var task = Task.Run(() => GetSingle<Mastery>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
         /// <summary>
         /// Gets a Mastery based on its numeric ID.
         /// </summary>
@@ -605,10 +1051,38 @@ namespace PandaScoreNET
         /// <param name="options">Query options object configured with the query settings.</param>
         /// <returns>A single Mastery object, matching the search options, or null, if no matches are found.</returns>
         /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Mastery GetSingleMastery(MasteryQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "masteries", options.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetSingleFromArray<Mastery>(uri));
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Gets the first mastery that matches the query options. Even if there is more than one matching result, only the first will be returned!
+        /// </summary>
+        /// <param name="options">Query options object configured with the query settings.</param>
+        /// <returns>A single Mastery object, matching the search options, or null, if no matches are found.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
         public async Task<Mastery> GetSingleMasteryAsync(MasteryQueryOptions options)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "masteries", options.GetQueryString(), AccessToken));
             return await GetSingleFromArray<Mastery>(uri);
+        }
+
+        /// <summary>
+        /// Queries for a matching array of masteries.
+        /// </summary>
+        /// <param name="options">Query options object configured with the search settings.</param>
+        /// <returns>An array containing all masteries that match the search options.</returns>
+        /// <exception cref="HttpRequestException">Thrown when the request is not successful.</exception>
+        public Mastery[] GetMasteries(MasteryQueryOptions options)
+        {
+            var uri = new Uri(string.Format(@"{0}/{1}?{2}&token={3}", Domain, "masteries", options?.GetQueryString(), AccessToken));
+            var task = Task.Run(() => GetMany<Mastery>(uri));
+            task.Wait();
+            return task.Result;
         }
 
         /// <summary>

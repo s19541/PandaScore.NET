@@ -18,6 +18,11 @@ namespace PandaScoreNET
         private readonly string Domain = "https://api.pandascore.co/lol/";
         HttpClient client = new HttpClient();
 
+        /// <summary>
+        /// How many more queries are remaining for today.
+        /// </summary>
+        public int RateLimitRemaining { get; private set; }
+
         /// <param name="accessToken">Your PandaScore Access Token.</param>
         public PandaScoreLoLProvider(string accessToken)
         {
@@ -1126,6 +1131,8 @@ namespace PandaScoreNET
                 throw new HttpRequestException($"PandaScore request returned status code {response.StatusCode}");
             }
 
+            UpdateRateLimit(response);
+
             var jsonString = await response.Content.ReadAsStringAsync();
             return JObject.Parse(jsonString).ToObject<T>();
         }
@@ -1138,6 +1145,8 @@ namespace PandaScoreNET
             {
                 throw new HttpRequestException($"PandaScore request returned status code {response.StatusCode}");
             }
+
+            UpdateRateLimit(response);
 
             var jsonString = await response.Content.ReadAsStringAsync();
             var array = JArray.Parse(jsonString);
@@ -1153,6 +1162,8 @@ namespace PandaScoreNET
             {
                 throw new HttpRequestException($"PandaScore request returned status code {response.StatusCode}");
             }
+
+            UpdateRateLimit(response);
 
             int numberOfItems = int.Parse(
                 response.Headers.GetValues("X-Total").First());
@@ -1172,6 +1183,7 @@ namespace PandaScoreNET
                 {
                     response = await client.GetAsync(GetNextPage(linkHeader));
                     linkHeader = response.Headers.GetValues("Link").First();
+                    UpdateRateLimit(response);
                     jsonString = await response.Content.ReadAsStringAsync();
                     result.AddRange(JArray.Parse(jsonString).ToObject<T[]>());
                 }
@@ -1196,6 +1208,8 @@ namespace PandaScoreNET
                 throw new HttpRequestException($"PandaScore request returned status code {response.StatusCode}");
             }
 
+            UpdateRateLimit(response);
+
             int numberOfItems = int.Parse(
                 response.Headers.GetValues("X-Total").First());
 
@@ -1218,6 +1232,7 @@ namespace PandaScoreNET
                     responseTask.Wait();
                     response = responseTask.Result;
                     linkHeader = response.Headers.GetValues("Link").First();
+                    UpdateRateLimit(response);
                     jsonStringTask = Task.Run(() => response.Content.ReadAsStringAsync());
                     jsonStringTask.Wait();
                     jsonString = jsonStringTask.Result;
@@ -1258,6 +1273,11 @@ namespace PandaScoreNET
                     return @"\upcoming";
             }
             return "";
+        }
+
+        void UpdateRateLimit(HttpResponseMessage response)
+        {
+            RateLimitRemaining = int.Parse(response.Headers.GetValues("X-Rate-Limit-Remaining").First());
         }
         #endregion
     }

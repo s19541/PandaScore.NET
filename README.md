@@ -8,7 +8,7 @@ Currently, you can make queries for League of Legends champions, items, summoner
 
 ## Getting Started
 
-Simply build the project and use the resulting DLL, or get if from [NuGet](https://www.nuget.org/packages/PandaScore.NET/).
+Simply build the project and use the resulting DLL, or get it from [NuGet](https://www.nuget.org/packages/PandaScore.NET/).
 
 For now, only League of Legends is supported - all requests can be made through a PandaScoreLoLProvider instance. You will need to supply your PandaScore API token in the constructor.
 

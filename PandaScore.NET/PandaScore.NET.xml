@@ -24,6 +24,11 @@
             Represents a specific match, such as a regular season Bo1, or a playoff match.
             </summary>
         </member>
+        <member name="T:PandaScoreNET.LoL.ChampionQueryOptions">
+            <summary>
+            Represents settings required to make a champion query. Refer to each property's comments for usage.
+            </summary>
+        </member>
         <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.Armor">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
@@ -96,6 +101,11 @@
         <member name="P:PandaScoreNET.LoL.ChampionQueryOptions.MagicResistPerLevel">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
+        <member name="T:PandaScoreNET.LoL.ItemQueryOptions">
+            <summary>
+            Represents settings required to make an item query. Refer to each property's comments for usage.
+            </summary>
+        </member>
         <member name="P:PandaScoreNET.LoL.ItemQueryOptions.FlatArmor">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
@@ -159,6 +169,11 @@
         <member name="P:PandaScoreNET.LoL.ItemQueryOptions.PercentMovementSpeed">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
+        <member name="T:PandaScoreNET.LoL.LeagueQueryOptions">
+            <summary>
+            Represents settings required to make a league query. Refer to each property's comments for usage.
+            </summary>
+        </member>
         <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.Id">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
@@ -180,11 +195,21 @@
         <member name="P:PandaScoreNET.LoL.LeagueQueryOptions.Url">
             <summary>Can be used to filter, sort, range, or as a search term. </summary>
         </member>
+        <member name="T:PandaScoreNET.LoL.MasteryQueryOptions">
+            <summary>
+            Represents settings required to make a mastery query. Refer to each property's comments for usage.
+            </summary>
+        </member>
         <member name="P:PandaScoreNET.LoL.MasteryQueryOptions.Id">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.MasteryQueryOptions.Name">
             <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.MatchQueryOptions">
+            <summary>
+            Represents settings required to make a match query. Refer to each property's comments for usage.
+            </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.MatchQueryOptions.Draw">
             <summary>Can be used to filter, sort and range. </summary>
@@ -254,6 +279,11 @@
         </member>
         <member name="P:PandaScoreNET.LoL.MatchQueryOptions.WinnerId">
             <summary>Can be used to filter, sort and range. </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.PlayerQueryOptions">
+            <summary>
+            Represents settings required to make a player query. Refer to each property's comments for usage.
+            </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.PlayerQueryOptions.FirstName">
             <summary>Can be used to filter, sort, range, or as a search term. </summary>
@@ -339,11 +369,21 @@
             Removes any sorting options applied to this property.
             </summary>
         </member>
+        <member name="T:PandaScoreNET.LoL.RuneQueryOptions">
+            <summary>
+            Represents settings required to make a rune query. Refer to each property's comments for usage.
+            </summary>
+        </member>
         <member name="P:PandaScoreNET.LoL.RuneQueryOptions.Id">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.RuneQueryOptions.Name">
             <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.SeriesQueryOptions">
+            <summary>
+            Represents settings required to make a series query. Refer to each property's comments for usage.
+            </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.BeginAt">
             <summary>Can be used to filter, sort, and range. </summary>
@@ -387,6 +427,11 @@
         <member name="P:PandaScoreNET.LoL.SeriesQueryOptions.Year">
             <summary>Can be used to filter, sort, and range. </summary>
         </member>
+        <member name="T:PandaScoreNET.LoL.SpellQueryOptions">
+            <summary>
+            Represents settings required to make a spell query. Refer to each property's comments for usage.
+            </summary>
+        </member>
         <member name="P:PandaScoreNET.LoL.SpellQueryOptions.Id">
             <summary>Can be used to filter, sort, and give a value range to a query.</summary>
         </member>
@@ -395,6 +440,11 @@
         </member>
         <member name="P:PandaScoreNET.LoL.SpellQueryOptions.ImageUrl">
             <summary>Can be used to filter, sort, and range. </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.TeamQueryOptions">
+            <summary>
+            Represents settings required to make a team query. Refer to each property's comments for usage.
+            </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.TeamQueryOptions.Acronym">
             <summary>Can be used to filter, sort, range, or as a search term. </summary>
@@ -410,6 +460,11 @@
         </member>
         <member name="P:PandaScoreNET.LoL.TeamQueryOptions.Slug">
             <summary>Can be used to filter, sort, range, or as a search term. </summary>
+        </member>
+        <member name="T:PandaScoreNET.LoL.TournamentQueryOptions">
+            <summary>
+            Represents settings required to make a tournament query. Refer to each property's comments for usage.
+            </summary>
         </member>
         <member name="P:PandaScoreNET.LoL.TournamentQueryOptions.BeginAt">
             <summary>Can be used to filter, sort, and range. </summary>

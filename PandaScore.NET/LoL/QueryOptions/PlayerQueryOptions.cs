@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
+    /// <summary>
+    /// Represents settings required to make a player query. Refer to each property's comments for usage.
+    /// </summary>
     public class PlayerQueryOptions : QueryConfiguration
     {
         /// <summary>Can be used to filter, sort, range, or as a search term. </summary>

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
+    /// <summary>
+    /// Represents settings required to make a mastery query. Refer to each property's comments for usage.
+    /// </summary>
     public class MasteryQueryOptions : QueryConfiguration
     {
         /// <summary>Can be used to filter, sort, and range. </summary>

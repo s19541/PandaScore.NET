@@ -9,6 +9,9 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
+    /// <summary>
+    /// Represents settings required to make a champion query. Refer to each property's comments for usage.
+    /// </summary>
     public class ChampionQueryOptions : QueryConfiguration
     {
 

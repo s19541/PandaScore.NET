@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
+    /// <summary>
+    /// Represents settings required to make a series query. Refer to each property's comments for usage.
+    /// </summary>
     public class SeriesQueryOptions : QueryConfiguration
     {
         /// <summary>Can be used to filter, sort, and range. </summary>

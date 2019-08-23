@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
+    /// <summary>
+    /// Represents settings required to make a spell query. Refer to each property's comments for usage.
+    /// </summary>
     public class SpellQueryOptions : QueryConfiguration
     {
         /// <summary>Can be used to filter, sort, and give a value range to a query.</summary>

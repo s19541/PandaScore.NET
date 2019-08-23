@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
+    /// <summary>
+    /// Represents settings required to make an item query. Refer to each property's comments for usage.
+    /// </summary>
     public class ItemQueryOptions : QueryConfiguration
     {
         /// <summary>Can be used to filter, sort, and range. </summary>

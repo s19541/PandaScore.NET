@@ -456,6 +456,11 @@
             The main entry point into the API. Use to make requests from PandaScore.
             </summary>
         </member>
+        <member name="P:PandaScoreNET.PandaScoreLoLProvider.RateLimitRemaining">
+            <summary>
+            How many more queries are remaining for today.
+            </summary>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.#ctor(System.String)">
             <param name="accessToken">Your PandaScore Access Token.</param>
         </member>
@@ -515,6 +520,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeam(System.Int32)">
+            <summary>
+            Gets a team based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a team.</param>
+            <returns>A Team object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeamAsync(System.Int32)">
             <summary>
             Gets a team based on its numeric ID.
@@ -523,12 +536,28 @@
             <returns>A Team object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleTeam(PandaScoreNET.LoL.TeamQueryOptions)">
+            <summary>
+            Gets the first team that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Team object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleTeamAsync(PandaScoreNET.LoL.TeamQueryOptions)">
             <summary>
             Gets the first team that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single Team object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeams(PandaScoreNET.LoL.TeamQueryOptions)">
+            <summary>
+            Queries for a matching array of teams.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all teams that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTeamsAsync(PandaScoreNET.LoL.TeamQueryOptions)">
@@ -547,6 +576,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItem(System.Int32)">
+            <summary>
+            Gets an Item based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to an item.</param>
+            <returns>An Item object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItemAsync(System.Int32)">
             <summary>
             Gets an Item based on its numeric ID.
@@ -555,12 +592,28 @@
             <returns>An Item object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleItem(PandaScoreNET.LoL.ItemQueryOptions)">
+            <summary>
+            Gets the first Item that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Item object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleItemAsync(PandaScoreNET.LoL.ItemQueryOptions)">
             <summary>
             Gets the first Item that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single Item object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItems(PandaScoreNET.LoL.ItemQueryOptions)">
+            <summary>
+            Queries for a matching array of items.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all items that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetItemsAsync(PandaScoreNET.LoL.ItemQueryOptions)">
@@ -579,6 +632,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampion(System.Int32)">
+            <summary>
+            Gets a <c>Champion</c> based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a champion.</param>
+            <returns>A <c>Champion</c> object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampionAsync(System.Int32)">
             <summary>
             Gets a <c>Champion</c> based on its numeric ID.
@@ -587,12 +648,28 @@
             <returns>A <c>Champion</c> object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleChampion(PandaScoreNET.LoL.ChampionQueryOptions)">
+            <summary>
+            Gets the first champion that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleChampionAsync(PandaScoreNET.LoL.ChampionQueryOptions)">
             <summary>
             Gets the first champion that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single champion object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampions(PandaScoreNET.LoL.ChampionQueryOptions)">
+            <summary>
+            Queries for a matching array of champions.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all champions that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetChampionsAsync(PandaScoreNET.LoL.ChampionQueryOptions)">
@@ -674,13 +751,31 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
-        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSeriesAsync(System.Int32,PandaScoreNET.GameCollectionStatus)">
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSeries(System.Int32,PandaScoreNET.GameCollectionStatus)">
             <summary>
             Gets a series based on its numeric ID.
             </summary>
             <param name="id">A numeric ID belonging to a series.</param>
             <param name="category">Completion status of the series to be queried. Defaults to All.</param>
             <returns>A Series object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSeriesAsync(System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets a series based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a series.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <returns>A Series object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSeries(PandaScoreNET.LoL.SeriesQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets the first series that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <returns>A single Series object, matching the search options, or null, if no matches are found.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSeriesAsync(PandaScoreNET.LoL.SeriesQueryOptions,PandaScoreNET.GameCollectionStatus)">
@@ -690,6 +785,15 @@
             <param name="options">Query options object configured with the query settings.</param>
             <param name="category">Completion status of the series to be queried. Defaults to All.</param>
             <returns>A single Series object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSeries(PandaScoreNET.LoL.SeriesQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Queries for a matching array of series.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <param name="category">Completion status of the series to be queried. Defaults to All.</param>
+            <returns>An array containing all series that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSeriesAsync(PandaScoreNET.LoL.SeriesQueryOptions,PandaScoreNET.GameCollectionStatus)">
@@ -710,6 +814,15 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournament(System.Int32,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets a tournament based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a tournament.</param>
+            <param name="category">Completion status of the tournament to be queried. Defaults to All.</param>
+            <returns>A Tournament object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournamentAsync(System.Int32,PandaScoreNET.GameCollectionStatus)">
             <summary>
             Gets a tournament based on its numeric ID.
@@ -719,6 +832,15 @@
             <returns>A Tournament object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleTournament(PandaScoreNET.LoL.TournamentQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Gets the first tournament that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+            <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleTournamentAsync(PandaScoreNET.LoL.TournamentQueryOptions,PandaScoreNET.GameCollectionStatus)">
             <summary>
             Gets the first tournament that matches the query options. Even if there is more than one matching result, only the first will be returned!
@@ -726,6 +848,15 @@
             <param name="options">Query options object configured with the query settings.</param>
             <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
             <returns>A single Tournament object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournaments(PandaScoreNET.LoL.TournamentQueryOptions,PandaScoreNET.GameCollectionStatus)">
+            <summary>
+            Queries for a matching array of tournaments.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <param name="category">Completion status of the tournaments to be queried. Defaults to All.</param>
+            <returns>An array containing all tournaments that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetTournamentsAsync(PandaScoreNET.LoL.TournamentQueryOptions,PandaScoreNET.GameCollectionStatus)">
@@ -746,6 +877,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeague(System.Int32)">
+            <summary>
+            Gets a league based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a league.</param>
+            <returns>A League object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeagueAsync(System.Int32)">
             <summary>
             Gets a league based on its numeric ID.
@@ -754,12 +893,28 @@
             <returns>A League object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleLeague(PandaScoreNET.LoL.LeagueQueryOptions)">
+            <summary>
+            Gets the first league that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single League object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleLeagueAsync(PandaScoreNET.LoL.LeagueQueryOptions)">
             <summary>
             Gets the first league that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single League object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeagues(PandaScoreNET.LoL.LeagueQueryOptions)">
+            <summary>
+            Queries for a matching array of leagues.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all leagues that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetLeaguesAsync(PandaScoreNET.LoL.LeagueQueryOptions)">
@@ -778,6 +933,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRune(System.Int32)">
+            <summary>
+            Gets a rune based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a rune.</param>
+            <returns>A Rune object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRuneAsync(System.Int32)">
             <summary>
             Gets a rune based on its numeric ID.
@@ -786,12 +949,28 @@
             <returns>A Rune object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleRune(PandaScoreNET.LoL.RuneQueryOptions)">
+            <summary>
+            Gets the first rune that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Rune object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleRuneAsync(PandaScoreNET.LoL.RuneQueryOptions)">
             <summary>
             Gets the first rune that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single Rune object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRunes(PandaScoreNET.LoL.RuneQueryOptions)">
+            <summary>
+            Queries for a matching array of runes.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all runes that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetRunesAsync(PandaScoreNET.LoL.RuneQueryOptions)">
@@ -810,6 +989,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpell(System.Int32)">
+            <summary>
+            Gets a spell based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a spell.</param>
+            <returns>A Spell object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpellAsync(System.Int32)">
             <summary>
             Gets a spell based on its numeric ID.
@@ -818,12 +1005,28 @@
             <returns>A Spell object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSpell(PandaScoreNET.LoL.SpellQueryOptions)">
+            <summary>
+            Gets the first spell that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Spell object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleSpellAsync(PandaScoreNET.LoL.SpellQueryOptions)">
             <summary>
             Gets the first spell that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single Spell object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpells(PandaScoreNET.LoL.SpellQueryOptions)">
+            <summary>
+            Queries for a matching array of spells.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all spells that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSpellsAsync(PandaScoreNET.LoL.SpellQueryOptions)">
@@ -842,6 +1045,14 @@
             <param name="pageSize">How many results should be returned per iteration.</param>
             <returns>Arrays of query results.</returns>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMastery(System.Int32)">
+            <summary>
+            Gets a Mastery based on its numeric ID.
+            </summary>
+            <param name="id">A numeric ID belonging to a mastery.</param>
+            <returns>A Mastery object with the specified ID.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMasteryAsync(System.Int32)">
             <summary>
             Gets a Mastery based on its numeric ID.
@@ -850,12 +1061,28 @@
             <returns>A Mastery object with the specified ID.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleMastery(PandaScoreNET.LoL.MasteryQueryOptions)">
+            <summary>
+            Gets the first mastery that matches the query options. Even if there is more than one matching result, only the first will be returned!
+            </summary>
+            <param name="options">Query options object configured with the query settings.</param>
+            <returns>A single Mastery object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetSingleMasteryAsync(PandaScoreNET.LoL.MasteryQueryOptions)">
             <summary>
             Gets the first mastery that matches the query options. Even if there is more than one matching result, only the first will be returned!
             </summary>
             <param name="options">Query options object configured with the query settings.</param>
             <returns>A single Mastery object, matching the search options, or null, if no matches are found.</returns>
+            <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
+        </member>
+        <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMasteries(PandaScoreNET.LoL.MasteryQueryOptions)">
+            <summary>
+            Queries for a matching array of masteries.
+            </summary>
+            <param name="options">Query options object configured with the search settings.</param>
+            <returns>An array containing all masteries that match the search options.</returns>
             <exception cref="T:System.Net.Http.HttpRequestException">Thrown when the request is not successful.</exception>
         </member>
         <member name="M:PandaScoreNET.PandaScoreLoLProvider.GetMasteriesAsync(PandaScoreNET.LoL.MasteryQueryOptions)">

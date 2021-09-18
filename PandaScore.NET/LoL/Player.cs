@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PandaScoreNET.LoL
 {
-    public enum PlayerRole { top, jun, mid, adc, sup }
+    public enum PlayerRole { top, jungle, mid, adc, support, jun, sup }
 
     public class Player
     {
@@ -15,6 +15,10 @@ namespace PandaScoreNET.LoL
         public Team CurrentTeam { get; private set; }
         [JsonProperty("current_videogame")]
         public VideoGame CurrentVideoGame { get; private set; }
+        [JsonProperty("birth_year")]
+        public string Birth_year { get; private set; }
+        [JsonProperty("birthday")]
+        public string Birthday{ get; private set; }
         [JsonProperty("first_name")]
         public string FirstName { get; private set; }
         [JsonProperty("hometown")]
@@ -27,8 +31,10 @@ namespace PandaScoreNET.LoL
         public string LastName { get; private set; }
         [JsonProperty("name")]
         public string Name { get; private set; }
+        [JsonProperty("nationality")]
+        public string Nationality { get; private set; }
         [JsonProperty("role")]
-        public PlayerRole Role { get; private set; }
+        public PlayerRole? Role { get; private set; }
         [JsonProperty("slug")]
         public string Slug { get; private set; }
         #endregion

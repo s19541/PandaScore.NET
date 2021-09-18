@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Rune = PandaScoreNET.LoL.Rune;
 
 namespace PandaScoreNET
 {
@@ -252,7 +252,7 @@ namespace PandaScoreNET
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?token={3}", Domain, "items", id, AccessToken));
             return await GetSingle<Item>(uri);
         }
-        
+
         /// <summary>
         /// Gets the first Item that matches the query options. Even if there is more than one matching result, only the first will be returned!
         /// </summary>
@@ -433,7 +433,7 @@ namespace PandaScoreNET
             task.Wait();
             return task.Result;
         }
-        
+
         /// <summary>
         /// Gets a match based on its numeric ID.
         /// </summary>
@@ -671,7 +671,7 @@ namespace PandaScoreNET
         public Tournament GetSingleTournament(TournamentQueryOptions options, GameCollectionStatus status = GameCollectionStatus.All)
         {
             var uri = new Uri(string.Format(@"{0}/{1}/{2}?{3}&token={4}", Domain, "tournaments", GetTournamentDomainString(status), options.GetQueryString(), AccessToken));
-            var task = Task.Run(() =>  GetSingleFromArray<Tournament>(uri));
+            var task = Task.Run(() => GetSingleFromArray<Tournament>(uri));
             task.Wait();
             return task.Result;
         }
@@ -745,7 +745,7 @@ namespace PandaScoreNET
         public League GetLeague(int id)
         {
             var uri = new Uri(string.Format(@"{0}/{1}?filter[id]={2}&token={3}", Domain, "leagues", id, AccessToken));
-            var task = Task.Run(() =>  GetSingleFromArray<League>(uri));
+            var task = Task.Run(() => GetSingleFromArray<League>(uri));
             task.Wait();
             return task.Result;
         }

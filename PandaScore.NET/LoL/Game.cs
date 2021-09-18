@@ -13,6 +13,10 @@ namespace PandaScoreNET.LoL
         #region Properties
         [JsonProperty("begin_at")]
         public DateTime? BeginAt { get; private set; }
+        [JsonProperty("complete")]
+        public bool Complte { get; private set; }
+        [JsonProperty("detailed_stats")]
+        public bool DetailedStats { get; private set; }
         [JsonProperty("end_at")]
         public DateTime? EndAt { get; private set; }
         [JsonProperty("finished")]
@@ -23,12 +27,12 @@ namespace PandaScoreNET.LoL
         public int Id { get; private set; }
         [JsonProperty("length")]
         public float? Length { get; private set; }
-        [JsonProperty("match")]
-        public Match Match { get; private set; }
+        //[JsonProperty("match")]
+        //public Match Match { get; private set; }
         [JsonProperty("match_id")]
         public int MatchId { get; private set; }
-        [JsonProperty("players")]
-        public Player[] Players { get; private set; }
+        //[JsonProperty("players")]
+       // public Player[] Players { get; private set; }
         /// <summary>
         /// This game's position in a series.
         /// </summary>
@@ -36,8 +40,8 @@ namespace PandaScoreNET.LoL
         public int Position { get; private set; }
         [JsonProperty("status")]
         public string Status { get; private set; }
-        [JsonProperty("teams")]
-        public Team[] Teams { get; private set; }
+       // [JsonProperty("teams")]
+        //public Team[] Teams { get; private set; }
         [JsonProperty("video_url")]
         public string VideoUrl { get; private set; }
         [JsonProperty("winner")]

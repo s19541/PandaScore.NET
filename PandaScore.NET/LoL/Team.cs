@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PandaScoreNET.LoL
 {
@@ -23,6 +20,11 @@ namespace PandaScoreNET.LoL
         public string Slug { get; private set; }
         [JsonProperty("players")]
         public Player[] Players { get; private set; }
+        [JsonProperty("modified_at")]
+        public DateTime? ModifiedAt { get; private set; }
+        [JsonProperty("location")]
+        public String Location { get; private set; }
+
         #endregion
 
         #region Constructors

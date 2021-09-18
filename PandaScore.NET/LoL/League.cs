@@ -28,7 +28,7 @@ namespace PandaScoreNET.LoL
         [JsonProperty("url")]
         public string Url { get; private set; }
         [JsonProperty("videogame")]
-        public string VideoGame { get; private set; }
+        public VideoGame VideoGame { get; private set; }
         #endregion
 
         #region Equals_HashCode

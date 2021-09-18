@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PandaScore.NET;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PandaScoreNET.LoL
 {
@@ -16,10 +13,14 @@ namespace PandaScoreNET.LoL
         public DateTime? BeginAt { get; private set; }
         [JsonProperty("end_at")]
         public DateTime? EndAt { get; private set; }
+        [JsonProperty("detailed_stats")]
+        public bool DetailedStats { get; private set; }
         [JsonProperty("draw")]
         public bool Draw { get; private set; }
         [JsonProperty("forfeit")]
         public bool Forfeit { get; private set; }
+        [JsonProperty("game_advantage")]
+        public string GameAdvantage { get; private set; }
         [JsonProperty("games")]
         public Game[] Games { get; private set; }
         [JsonProperty("id")]
@@ -30,7 +31,7 @@ namespace PandaScoreNET.LoL
         public int LeagueId { get; private set; }
         [JsonProperty("live")]
         public LiveData LiveData { get; private set; }
-        [JsonProperty("live_url")]
+        [JsonProperty("live_embed_url")]
         public string LiveUrl { get; private set; }
         [JsonProperty("match_type")]
         public MatchType MatchType { get; private set; }
